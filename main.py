@@ -1,6 +1,11 @@
+# La documentacion oficial
+# https://docs.python.org/3/library/tk.html
+# https://docs.python.org/es/3/library/tkinter.html
+
 from tkinter import * 
 from tkinter.ttk import *
 from tkinter import messagebox as MessageBox
+import os
 
 def donothing():
    filewin = Toplevel(root)
@@ -39,17 +44,30 @@ def menu():
     root.config(menu=menubar)
 
 def opciones():
-    boton1 = Button(root, text="Clícame", command=donothing)
+    boton1 = Button(root, text="Writing", command=writingSwitch)
     boton1.grid(row=0, column=0)
    
-    boton2 = Button(root, text="Pulsame", command=donothing)
+    boton2 = Button(root, text="Speaking", command=speakingSwitch)
     boton2.grid(row=1, column=0)
 
-    boton3 = Button(root, text="Aprietame", command=donothing)
+    boton3 = Button(root, text="Reading", command=readingSwitch)
     boton3.grid(row=0, column=1)
 
-    boton4 = Button(root, text="Agarrame", command=donothing)
+    boton4 = Button(root, text="Listening", command=listeningSwitch)
     boton4.grid(row=1, column=1)
+
+# Los Switchers de pantalla
+def writingSwitch():
+    os.system('writing\writing_menu.py')
+
+def speakingSwitch():
+    print("Hola")
+
+def readingSwitch():
+    print("Hola")
+
+def listeningSwitch():
+    print("Hola")
 
 
 # El tamaño de la ventana
