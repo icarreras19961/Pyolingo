@@ -5,7 +5,14 @@
 from tkinter import * 
 from tkinter.ttk import *
 from tkinter import messagebox as MessageBox
-import os
+
+
+# Las finciones para lanzar las otras paginas
+from writing.writing_menu import writing_menu
+from speaking.speaking_menu import speaking_menu
+from reading.reading_menu import reading_menu
+from listening.listening_menu import listening_menu
+
 
 def donothing():
    filewin = Toplevel(root)
@@ -44,31 +51,17 @@ def menu():
     root.config(menu=menubar)
 
 def opciones():
-    boton1 = Button(root, text="Writing", command=writingSwitch)
+    boton1 = Button(root, text="Writing", command=writing_menu)
     boton1.grid(row=0, column=0)
    
-    boton2 = Button(root, text="Speaking", command=speakingSwitch)
+    boton2 = Button(root, text="Speaking", command=speaking_menu)
     boton2.grid(row=1, column=0)
 
-    boton3 = Button(root, text="Reading", command=readingSwitch)
+    boton3 = Button(root, text="Reading", command=reading_menu)
     boton3.grid(row=0, column=1)
 
-    boton4 = Button(root, text="Listening", command=listeningSwitch)
+    boton4 = Button(root, text="Listening", command=listening_menu)
     boton4.grid(row=1, column=1)
-
-# Los Switchers de pantalla
-def writingSwitch():
-    os.system('writing\writing_menu.py')
-
-def speakingSwitch():
-    print("Hola")
-
-def readingSwitch():
-    print("Hola")
-
-def listeningSwitch():
-    print("Hola")
-
 
 # El tamaño de la ventana
 root.geometry("900x500")

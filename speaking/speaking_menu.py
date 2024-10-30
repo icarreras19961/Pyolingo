@@ -1,7 +1,8 @@
 from tkinter import * 
 from tkinter.ttk import *
 from tkinter import messagebox as MessageBox
-def writing_menu():
+# hacer 2 botones que te dejen elegir la tematica
+def speaking_menu():
 
     root = Tk()
 
