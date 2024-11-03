@@ -1,0 +1,1 @@
+# bro se necesita pillow y customtkinter
