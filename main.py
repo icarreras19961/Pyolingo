@@ -1,8 +1,9 @@
 # La documentacion oficial
 # https://docs.python.org/3/library/tk.html
 # https://docs.python.org/es/3/library/tkinter.html
-
 from tkinter import * 
+import customtkinter
+
 from tkinter.ttk import *
 from tkinter import messagebox as MessageBox
 
@@ -13,42 +14,58 @@ from speaking.speaking_menu import speaking_menu
 from reading.reading_menu import reading_menu
 from listening.listening_menu import listening_menu
 
+def Dashboard():
+    main = customtkinter.CTk()
+    main.title("Pyolingo")
+    main.geometry("1200x650")
 
-def donothing():
-   filewin = Toplevel(root)
-   button = Button(filewin, text="Do nothing button")
-   button.pack()
+    frameMain = Frame(main)
+    frameMain.pack(fill="both", expand=True)
+    frameMain.grid_columnconfigure(0, weight=1)
+    frameMain.grid_columnconfigure(1, weight=1)
+    frameMain.grid_rowconfigure(0, weight=1)
 
-root = Tk()
+    # Frame Menu -> donde estara los botones 
+    frameMenu = Frame(frameMain)
+    main.mainloop()
 
-def menu():
-    # Menu bar 
-    menubar = Menu(root)
-    filemenu = Menu(menubar, tearoff=0)
-    filemenu.add_command(label="New", command=donothing)
-    filemenu.add_command(label="Open", command=donothing)
-    filemenu.add_command(label="Save", command=donothing)
-    filemenu.add_command(label="Save as...", command=donothing)
-    filemenu.add_command(label="Close", command=donothing)
+    #Frame 
 
-    filemenu.add_separator()
-    filemenu.add_command(label="Exit", command=root.quit)
-    menubar.add_cascade(label="File", menu=filemenu)
-    editmenu = Menu(menubar, tearoff=0)
-    editmenu.add_command(label="Undo", command=donothing)
-    editmenu.add_separator()
-    editmenu.add_command(label="Cut", command=donothing)
-    editmenu.add_command(label="Copy", command=donothing)
-    editmenu.add_command(label="Paste", command=donothing)
-    editmenu.add_command(label="Delete", command=donothing)
-    editmenu.add_command(label="Select All", command=donothing)
+# def donothing():
+#    filewin = Toplevel(root)
+#    button = Button(filewin, text="Do nothing button")
+#    button.pack()
 
-    menubar.add_cascade(label="Edit", menu=editmenu)
-    helpmenu = Menu(menubar, tearoff=0)
-    helpmenu.add_command(label="Help Index", command=donothing)
-    helpmenu.add_command(label="About...", command=donothing)
-    menubar.add_cascade(label="Help", menu=helpmenu)
-    root.config(menu=menubar)
+# root = Tk()
+
+# def menu():
+#     # Menu bar 
+#     menubar = Menu(root)
+#     filemenu = Menu(menubar, tearoff=0)
+#     filemenu.add_command(label="New", command=donothing)
+#     filemenu.add_command(label="Open", command=donothing)
+#     filemenu.add_command(label="Save", command=donothing)
+#     filemenu.add_command(label="Save as...", command=donothing)
+#     filemenu.add_command(label="Close", command=donothing)
+
+#     filemenu.add_separator()
+#     filemenu.add_command(label="Exit", command=root.quit)
+#     menubar.add_cascade(label="File", menu=filemenu)
+#     editmenu = Menu(menubar, tearoff=0)
+#     editmenu.add_command(label="Undo", command=donothing)
+#     editmenu.add_separator()
+#     editmenu.add_command(label="Cut", command=donothing)
+#     editmenu.add_command(label="Copy", command=donothing)
+#     editmenu.add_command(label="Paste", command=donothing)
+#     editmenu.add_command(label="Delete", command=donothing)
+#     editmenu.add_command(label="Select All", command=donothing)
+
+#     menubar.add_cascade(label="Edit", menu=editmenu)
+#     helpmenu = Menu(menubar, tearoff=0)
+#     helpmenu.add_command(label="Help Index", command=donothing)
+#     helpmenu.add_command(label="About...", command=donothing)
+#     menubar.add_cascade(label="Help", menu=helpmenu)
+#     root.config(menu=menubar)
 
 def opciones():
     boton1 = Button(root, text="Writing", command=writing_menu)
@@ -64,9 +81,10 @@ def opciones():
     boton4.grid(row=1, column=1)
 
 # El tamaño de la ventana
-root.geometry("900x500")
+# root.geometry("900x500")
 
 # Lo que construye la app
-menu()
-opciones()
-root.mainloop()
+# menu()
+# opciones()
+# root.mainloop()
+Dashboard()
