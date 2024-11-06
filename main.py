@@ -4,7 +4,7 @@
 from tkinter import * 
 import customtkinter
 
-from tkinter.ttk import *
+# from tkinter.ttk import *
 from tkinter import messagebox as MessageBox
 
 
@@ -19,7 +19,7 @@ def Dashboard():
     main.title("Pyolingo")
     main.geometry("1200x650")
 
-    frameMain = Frame(main)
+    frameMain = Frame(main, bg="black")
     frameMain.pack(fill="both", expand=True)
     frameMain.grid_columnconfigure(0, weight=1)
     frameMain.grid_columnconfigure(1, weight=1)
