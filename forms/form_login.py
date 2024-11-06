@@ -1,5 +1,5 @@
 from tkinter import *
-from PIL import Image, ImageTk
+# from PIL import Image, ImageTk
 import customtkinter
 
 class FormLogin:
@@ -11,12 +11,12 @@ class FormLogin:
         self.main.resizable(False, False)
 
         # Hacer una función para que te permita leer una imagen 
-        try:
-            img = Image.open("../ref/img/logo.png")
-            self.img = ImageTk.PhotoImage(img)
-        except Exception as e:
-            print(f"Error loading image: {e}")
-            self.img = None
+        # try:
+        #     img = Image.open("../ref/img/logo.png")
+        #     self.img = ImageTk.PhotoImage(img)
+        # except Exception as e:
+        #     print(f"Error loading image: {e}")
+        #     self.img = None
 
         # FrameMain 
         frameMain = Frame(self.main, bg="#f7f7f7")
@@ -34,7 +34,8 @@ class FormLogin:
         frameLogin.grid(row=0, column=1, sticky="nsew")
 
         # Contenido FrameLogo
-        lblLogoImg = Label(frameLogo, image=self.img, width=400, height=500, bg="#FFCC00")
+        img = PhotoImage(file="logo.png")
+        lblLogoImg = Label(frameLogo, image=img, width=400, height=500, bg="#FFCC00")
         lblLogoImg.pack_propagate(False)
         lblLogoImg.pack(expand=True)
 
