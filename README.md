@@ -6,3 +6,9 @@ Herramientas utilizadas:
 - Base de datos MariaDB
 - Plataforma de trabajo Visual Studio Code
 - Control de versiones Github
+
+##Especificaciones tecnicas
+- Python 3.11
+- Pip 24.0
+- Modulo: Customtkinter
+          tkinter 
