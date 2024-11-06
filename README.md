@@ -10,4 +10,4 @@ Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El p
 ## Especificaciones tecnicas
 - Python 3.11
 - Pip 24.0
-- Modulo: Customtkinter, tkinter 
+- Modulo: Customtkinter, tkinter, mariadb
