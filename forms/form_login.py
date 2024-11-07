@@ -7,9 +7,10 @@ import sys
 # Variables Globales
 nombreLogin=""
 pwdLogin=""
-
+entryLoginNombre = None 
 
 def FormLogin():
+    global entryLoginNombre
     # Ventana principal
     main = customtkinter.CTk()
     main.title("Pyolingo")
@@ -63,8 +64,8 @@ def FormLogin():
     div2.pack(fill="x")
     lblLoginNombre = Label(div2, text="Nombre de Usuario", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
     lblLoginNombre.pack(fill="x")
-    entryLoginNombre = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
-    entryLoginNombre.pack(fill="x")
+    nombreLogin = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
+    nombreLogin.pack(fill="x")    
 
     div3 = Frame(div1, bg="#f7f7f7", pady=11)
     div3.pack(fill="x")
@@ -80,6 +81,11 @@ def FormLogin():
 
 
 def conexionLogin():
+    global entryLoginNombre  # Usa la variable global
+
+    # Obtén el valor introducido en entryLoginNombre
+    nombreLogin = entryLoginNombre.get()
+    print(f"Nombre de Usuario: {nombreLogin}")
     try:
         conn = mariadb.connect(
         user="root",
@@ -97,11 +103,12 @@ def conexionLogin():
     cur = conn.cursor()
 
     cur.execute(
-        "SELECT * FROM usuario "
+        "SELECT * FROM usuario"
     )
-
-    for (reader) in cur:
-        print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+        
+    # for (reader) in cur:
+        # print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+        
 
 
 
