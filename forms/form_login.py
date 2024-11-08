@@ -3,27 +3,22 @@ import customtkinter
 # Conexion imports
 import mariadb
 import sys
+import os 
 
 # Variables Globales
-nombreLogin=""
-pwdLogin=""
-entryLoginNombre = None 
+nombreLogin = ""
+pwdLogin = ""
+entryLoginNombre = None
+entryLoginPwd = None 
 
 def FormLogin():
     global entryLoginNombre
+    global entryLoginPwd
     # Ventana principal
     main = customtkinter.CTk()
     main.title("Pyolingo")
     main.geometry("1200x650")
     main.resizable(False, False)
-
-    # Hacer una función para que te permita leer una imagen 
-    # try:
-    #     img = Image.open("../ref/img/logo.png")
-    #     self.img = ImageTk.PhotoImage(img)
-    # except Exception as e:
-    #     print(f"Error loading image: {e}")
-    #     self.img = None
 
     # FrameMain 
     frameMain = Frame(main, bg="#f7f7f7")
@@ -64,8 +59,8 @@ def FormLogin():
     div2.pack(fill="x")
     lblLoginNombre = Label(div2, text="Nombre de Usuario", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
     lblLoginNombre.pack(fill="x")
-    nombreLogin = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
-    nombreLogin.pack(fill="x")    
+    entryLoginNombre = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
+    entryLoginNombre.pack(fill="x")    
 
     div3 = Frame(div1, bg="#f7f7f7", pady=11)
     div3.pack(fill="x")
@@ -81,11 +76,14 @@ def FormLogin():
 
 
 def conexionLogin():
-    global entryLoginNombre  # Usa la variable global
-
+    entryLoginNombre  # Usa la variable global
+    entryLoginPwd
     # Obtén el valor introducido en entryLoginNombre
     nombreLogin = entryLoginNombre.get()
+    pwdLogin = entryLoginPwd.get()
     print(f"Nombre de Usuario: {nombreLogin}")
+    print(f"PWD de Usuario: {pwdLogin}")
+    
     try:
         conn = mariadb.connect(
         user="root",
@@ -101,15 +99,24 @@ def conexionLogin():
 
     # Get Cursor
     cur = conn.cursor()
-
-    cur.execute(
-        "SELECT * FROM usuario"
-    )
+    try:
+        cur.execute(
+            f"SELECT * FROM usuario Where nombre = '{nombreLogin}' AND pwd = '{pwdLogin}'"
+        )
+        reader = cur.fetchone()
         
-    # for (reader) in cur:
-        # print(f"First Name: {reader[1]}, pwd: {reader[2]}")
-        
-
+        # El registro de login
+        # 
+        if reader is None:
+            print("nada")
+        else:
+            print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            #TODO Se tiene que cerrar esta ventana y lanzarse la main
+            
+    except:
+        print("User not found")
+   
+    cur.close()
 
 
 FormLogin()
