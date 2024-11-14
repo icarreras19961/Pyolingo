@@ -13,28 +13,12 @@ from writing.writing_menu import writing_menu
 from speaking.speaking_menu import speaking_menu
 from reading.reading_menu import reading_menu
 from listening.listening_menu import listening_menu
+from forms.form_login import FormLogin
 
-def Dashboard():
-    main = customtkinter.CTk()
-    main.title("Pyolingo")
-    main.geometry("1200x650")
-
-    frameMain = Frame(main, bg="black")
-    frameMain.pack(fill="both", expand=True)
-    frameMain.grid_columnconfigure(0, weight=1)
-    frameMain.grid_columnconfigure(1, weight=1)
-    frameMain.grid_rowconfigure(0, weight=1)
-
-    # Frame Menu -> donde estara los botones 
-    frameMenu = Frame(frameMain)
-    main.mainloop()
-
-    #Frame 
-
-# def donothing():
-#    filewin = Toplevel(root)
-#    button = Button(filewin, text="Do nothing button")
-#    button.pack()
+def donothing():
+   filewin = Toplevel(root)
+   button = Button(filewin, text="Do nothing button")
+   button.pack()
 
 # root = Tk()
 
@@ -84,6 +68,6 @@ def opciones():
 # root.geometry("900x500")
 
 # Lo que construye la app
-menu()
-opciones()
-root.mainloop()
+# opciones()
+# root.mainloop()
+FormLogin()

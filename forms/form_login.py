@@ -1,21 +1,23 @@
 from tkinter import *
 import customtkinter
+# Conexion imports
+import mariadb
+import sys
 
-class FormLogin:
-    def __init__(self):
-        # Ventana principal
-        self.main = customtkinter.CTk()
-        self.main.title("Pyolingo")
-        self.main.geometry("1200x650")
-        self.main.resizable(False, False)
+# Variables Globales
+nombreLogin = ""
+pwdLogin = ""
+entryLoginNombre = None
+entryLoginPwd = None 
 
-        # Hacer una función para que te permita leer una imagen 
-        # try:
-        #     img = Image.open("../ref/img/logo.png")
-        #     self.img = ImageTk.PhotoImage(img)
-        # except Exception as e:
-        #     print(f"Error loading image: {e}")
-        #     self.img = None
+def FormLogin():
+    global entryLoginNombre
+    global entryLoginPwd
+    # Ventana principal
+    main = customtkinter.CTk()
+    main.title("Pyolingo")
+    main.geometry("1200x650")
+    main.resizable(False, False)
 
         # FrameMain 
         frameMain = Frame(self.main, bg="#f7f7f7")
@@ -66,10 +68,55 @@ class FormLogin:
         entryLoginPwd = customtkinter.CTkEntry(div3, placeholder_text="Ingresa tu contraseña", font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
         entryLoginPwd.pack(fill="x")
 
-        btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10)
-        btnValidarUsuario.pack()
+    btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10,command=conexionLogin)
+    btnValidarUsuario.pack()
+    
+    main.mainloop()
+
+
+def conexionLogin():
+    entryLoginNombre  # Usa la variable global
+    entryLoginPwd
+    # Obtén el valor introducido en entryLoginNombre
+    nombreLogin = entryLoginNombre.get()
+    pwdLogin = entryLoginPwd.get()
+    print(f"Nombre de Usuario: {nombreLogin}")
+    print(f"PWD de Usuario: {pwdLogin}")
+    
+    try:
+        conn = mariadb.connect(
+        user="root",
+        password="",
+        host="127.0.0.1",
+        port=3306,
+        database="pyolingo"
+        )
+    except mariadb.Error as e:
+        print("Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
         
-        self.main.mainloop()
+
+    # Get Cursor
+    cur = conn.cursor()
+    try:
+        cur.execute(
+            f"SELECT * FROM usuario Where nombre = '{nombreLogin}' AND pwd = '{pwdLogin}'"
+        )
+        reader = cur.fetchone()
+        
+        # El registro de login
+        # 
+        if reader is None:
+            print("nada")
+        else:
+            print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            
+        
+    except:
+        print("User not found")
+        
+   
+    cur.close()
 
 
 FormLogin()
