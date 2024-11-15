@@ -1,25 +1,15 @@
 from tkinter import *
-from PIL import Image, ImageTk
 import customtkinter
 
-class FormLogin:
-    def __init__(self):
+def FormLogin():
         # Ventana principal
-        self.main = customtkinter.CTk()
-        self.main.title("Pyolingo")
-        self.main.geometry("1200x650")
-        self.main.resizable(False, False)
-
-        # Hacer una función para que te permita leer una imagen 
-        try:
-            img = Image.open("../ref/img/logo.png")
-            self.img = ImageTk.PhotoImage(img)
-        except Exception as e:
-            print(f"Error loading image: {e}")
-            self.img = None
+        root = customtkinter.CTk()
+        root.title("Pyolingo")
+        root.geometry("1200x650")
+        root.resizable(False, False)
 
         # FrameMain 
-        frameMain = Frame(self.main, bg="#f7f7f7")
+        frameMain = Frame(root, bg="#f7f7f7")
         frameMain.pack(fill="both", expand=True)
         frameMain.grid_columnconfigure(0, weight=1)
         frameMain.grid_columnconfigure(1, weight=1)
@@ -34,7 +24,8 @@ class FormLogin:
         frameLogin.grid(row=0, column=1, sticky="nsew")
 
         # Contenido FrameLogo
-        lblLogoImg = Label(frameLogo, image=self.img, width=400, height=500, bg="#FFCC00")
+        img = PhotoImage(file="logo.png")
+        lblLogoImg = Label(frameLogo, image=img, width=400, height=500, bg="#FFCC00")
         lblLogoImg.pack_propagate(False)
         lblLogoImg.pack(expand=True)
 
@@ -66,10 +57,9 @@ class FormLogin:
         entryLoginPwd = customtkinter.CTkEntry(div3, placeholder_text="Ingresa tu contraseña", font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
         entryLoginPwd.pack(fill="x")
 
-        btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10)
+        btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=170, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10)
         btnValidarUsuario.pack()
         
-        self.main.mainloop()
-
+        root.mainloop()
 
 FormLogin()
