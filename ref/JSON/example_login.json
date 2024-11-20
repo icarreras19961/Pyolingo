@@ -1,0 +1,49 @@
+{
+    "userLoged": [
+        {
+            "name": "admin",
+            "lvl": [
+                {
+                    "writing": [
+                        {
+                            "informatica": false
+                        },
+                        {
+                            "deportes": false
+                        }
+                    ]
+                },
+                {
+                    "reading": [
+                        {
+                            "informatica": false
+                        },
+                        {
+                            "deportes": false
+                        }
+                    ]
+                },
+                {
+                    "listening": [
+                        {
+                            "informatica": false
+                        },
+                        {
+                            "deportes": false
+                        }
+                    ]
+                },
+                {
+                    "speaking": [
+                        {
+                            "informatica": false
+                        },
+                        {
+                            "deportes": false
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,15 +1,17 @@
 from tkinter import *
 import customtkinter
-from form_register import FormRegister
+# from form_register import FormRegister
 # Conexion imports
 import mariadb
 import sys
+
 
 # Variables Globales
 nombreLogin = ""
 pwdLogin = ""
 entryLoginNombre = None
 entryLoginPwd = None 
+
 
 def on_enter(event, button, textColor):
     button.configure(text_color=textColor)  # Cambiar color de texto a rojo cuando el ratón entra
@@ -128,7 +130,12 @@ def conexionLogin():
         if reader is None:
             print("nada")
         else:
+            # La escritura del fichero
+            file = open("./userLoged.json","w")
+            file.write(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            file.close()
             print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            
             
         
     except:
