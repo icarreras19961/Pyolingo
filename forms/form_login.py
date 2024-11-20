@@ -1,15 +1,21 @@
 from tkinter import *
 import customtkinter
+from form_register import FormRegister
 # Conexion imports
 import mariadb
 import sys
-import os 
 
 # Variables Globales
 nombreLogin = ""
 pwdLogin = ""
 entryLoginNombre = None
 entryLoginPwd = None 
+
+def on_enter(event, button, textColor):
+    button.configure(text_color=textColor)  # Cambiar color de texto a rojo cuando el ratón entra
+
+def on_leave(event, button, textColor):
+    button.configure(text_color=textColor)
 
 def FormLogin():
     global entryLoginNombre
@@ -41,8 +47,18 @@ def FormLogin():
     lblLogoImg.pack_propagate(False)
     lblLogoImg.pack(expand=True)
 
-    lblLogo = customtkinter.CTkLabel(frameLogo, corner_radius=10, text="¿No tienes una cuenta?", bg_color="white", text_color="black", width=500, height=60, font=("Arial", 24), anchor="w")
-    lblLogo.place(x=50, y=30)
+    lblMensajeRegistrarseInicio = customtkinter.CTkLabel(frameLogo, corner_radius=10, text="¿No tienes una cuenta?", fg_color="#f7f7f7", text_color="black", width=500, height=60, font=("Arial", 24), anchor="w")
+    lblMensajeRegistrarseInicio.place(x=50, y=30)
+
+    btnRegistrarse = customtkinter.CTkButton(frameLogo, width=0, height=60, text="Registrate", fg_color="#f7f7f7", text_color="#FFCC00", font=("Arial", 24, "bold"), corner_radius=0, cursor="hand2", hover_color="white")
+    btnRegistrarse.place(x=320, y=30)
+
+    lblMensajeRegistrarseFinal = customtkinter.CTkLabel(frameLogo,text="ya.", fg_color="#f7f7f7", text_color="black", height=60, font=("Arial", 24), anchor="w")
+    lblMensajeRegistrarseFinal.place(x=450, y=30)
+
+    # Asociar los eventos
+    btnRegistrarse.bind("<Enter>", lambda event, button=btnRegistrarse: on_enter(event, button, "#D1A800"))
+    btnRegistrarse.bind("<Leave>", lambda event, button=btnRegistrarse: on_leave(event, button, "#FFCC00"))
 
     # Contenido FrameLogin
     formularioLogin = Frame(frameLogin, width=400, height=500, bg="#f7f7f7")
@@ -57,6 +73,7 @@ def FormLogin():
 
     div2 = Frame(div1, bg="#f7f7f7", pady=11)
     div2.pack(fill="x")
+    
     lblLoginNombre = Label(div2, text="Nombre de Usuario", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
     lblLoginNombre.pack(fill="x")
     entryLoginNombre = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
@@ -64,12 +81,13 @@ def FormLogin():
 
     div3 = Frame(div1, bg="#f7f7f7", pady=11)
     div3.pack(fill="x")
+
     lblLoginPwd = Label(div3, text="Contraseña", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
     lblLoginPwd.pack(fill="x")
-    entryLoginPwd = customtkinter.CTkEntry(div3, placeholder_text="Ingresa tu contraseña", font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
+    entryLoginPwd = customtkinter.CTkEntry(div3, show="*", placeholder_text="Ingresa tu contraseña", font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
     entryLoginPwd.pack(fill="x")
 
-    btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10,command=conexionLogin)
+    btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10, command=conexionLogin)
     btnValidarUsuario.pack()
     
     main.mainloop()
@@ -111,12 +129,10 @@ def conexionLogin():
             print("nada")
         else:
             print(f"First Name: {reader[1]}, pwd: {reader[2]}")
-            #TODO Se tiene que cerrar esta ventana y lanzarse la main
             
+        
     except:
         print("User not found")
+        
    
     cur.close()
-
- 
-FormLogin()
