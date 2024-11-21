@@ -1,55 +1,43 @@
 {
-    "userLoged": [
+    "name": null,
+    "lvl": [
         {
-            "name": "admin",
-            "lvl": [
+            "writing": [
                 {
-                    "writing": [
-                        {
-                            "name" : "informatica",
-                            "complete": false
-                        },
-                        {
-                            "name" : "deportes",
-                            "complete": false
-                        }
-                    ]
+                    "informatica": false
                 },
                 {
-                    "reading": [
-                        {
-                            "name" : "informatica",
-                            "complete": false
-                        },
-                        {
-                           "name" : "deportes",
-                            "complete": false
-                        }
-                    ]
+                    "deportes": false
+                }
+            ]
+        },
+        {
+            "reading": [
+                {
+                    "informatica": false
                 },
                 {
-                    "listening": [
-                        {   
-                            "name" : "informatica",
-                            "complete": false
-                        },
-                        {
-                            "name" : "deportes",
-                            "complete": false
-                        }
-                    ]
+                    "deportes": false
+                }
+            ]
+        },
+        {
+            "listening": [
+                {
+                    "informatica": false
                 },
                 {
-                    "speaking": [
-                        {
-                            "name" : "informatica",
-                            "complete": false
-                        },
-                        {
-                            "name" : "deportes",
-                            "complete": false
-                        }
-                    ]
+                    "deportes": false
+                }
+            ]
+        },
+        {
+            "speaking": [
+                {
+                    "informatica": false
+                },
+                {
+                    "deportes": false
                 }
             ]
         }

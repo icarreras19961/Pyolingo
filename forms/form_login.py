@@ -1,9 +1,10 @@
 import customtkinter as ctk
-from Dashboard import Dashboard
+from dashboard import Dashboard
 # from form_register import FormRegister
 # Conexion imports
 import mariadb
 import sys
+import json
 
 # Variables Globales
 nombreLogin = ""
@@ -128,16 +129,24 @@ def conexionLogin(root):
         if reader is None:
             print("nada")
         else:
+            
+            niveles = json.loads(reader[4])
+            user_data = {
+                "name":reader[1],
+                "lvl": niveles
+            }
+            
+            print(type(user_data))
             # La escritura del fichero
-            file = open("./userLoged.json","w")
-            file.write(f"First Name: {reader[1]}, pwd: {reader[2]}")
-            file.close()
-            print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            with open("./userLoged.json","w") as file:
+                json.dumbs(user_data,file,indent=4,separators=(',',': '))
+            
+            
             CerrarAplicacion(root)
             
         
     except:
-        print("User not found")
+        print("User not found (error en la query)")
         
    
     cur.close()
