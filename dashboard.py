@@ -1,6 +1,12 @@
 import tkinter as tk
 import customtkinter as ctk
-# from forms.Login import Login
+from listening.listening_menu import listening_menu
+from reading.reading_menu import reading_menu
+from speaking.speaking_menu import speaking_menu
+from writing.writing_menu import writing_menu
+import forms.Login
+
+
 # FFCC00 Amarillo
 # 2F2F2F Gris
 def Dashboard():
@@ -27,11 +33,12 @@ def Dashboard():
     frameMenu.grid(row=0, column=0, sticky="nsew")
 
     # Contenedor del Contenido
-    frameContenido = ctk.CTkFrame(
+    frameContenedorJuegos = ctk.CTkFrame(
         frameMain, 
         fg_color="#f7f7f7"
     )
-    frameContenido.grid(row=0, column=1, sticky="nsew")
+    frameContenedorJuegos.grid(row=0, column=1, sticky="nsew")
+    frameContenedorJuegos.pack_propagate(False)
 
     # Nombre de la Aplicación
     lbNombreAplicacion = ctk.CTkLabel(
@@ -40,7 +47,7 @@ def Dashboard():
         text_color="#000", 
         font=("Arial", 32, "bold")
     )
-    lbNombreAplicacion.pack(fill= "x", side="top", pady=40)
+    lbNombreAplicacion.pack(fill= "x", side="top", pady=20)
 
     # Contenido Menú 
     img = tk.PhotoImage(file="avatar.png")
@@ -50,7 +57,7 @@ def Dashboard():
         bg="#FFCC00"
     )
     lbAvatar.image = img
-    lbAvatar.pack(pady=(50, 20))
+    lbAvatar.pack(pady=(20, 20))
 
     lbNombreUsuario = ctk.CTkLabel(
         frameMenu, 
@@ -61,7 +68,7 @@ def Dashboard():
     )
     lbNombreUsuario.pack(pady=(0, 10))
 
-    # Contenedor de botones 
+    # --------------------- Contenedor de botones ------------------
     frameContenedorOpcionesMenu = ctk.CTkFrame(
         frameMenu, 
         fg_color="#FFCC00", 
@@ -83,6 +90,60 @@ def Dashboard():
     )
     btnInicio.pack(fill= "x", side="top", pady=(0,5))
 
+    # ------------------------------
+    btnListening = ctk.CTkButton(
+        frameContenedorOpcionesMenu, 
+        text="Listening", 
+        height=40, 
+        font=("Arial", 16, "bold"), 
+        fg_color="#2F2F2F", 
+        text_color="#fff", 
+        hover_color="#1B1E25", 
+        cursor="hand2",
+        command=lambda: MostrarJuegoListening(frameContenedorJuegos)
+    )
+    btnListening.pack(fill= "x", side="top", pady=(0,5))
+
+    btnReading = ctk.CTkButton(
+        frameContenedorOpcionesMenu, 
+        text="Reading", 
+        height=40, 
+        font=("Arial", 16, "bold"), 
+        fg_color="#2F2F2F", 
+        text_color="#fff", 
+        hover_color="#1B1E25", 
+        cursor="hand2",
+        command=lambda: MostrarJuegoReading(frameContenedorJuegos)
+    )
+    btnReading.pack(fill= "x", side="top", pady=(0,5))
+
+    btnSpeaking = ctk.CTkButton(
+        frameContenedorOpcionesMenu, 
+        text="Speaking", 
+        height=40, 
+        font=("Arial", 16, "bold"), 
+        fg_color="#2F2F2F", 
+        text_color="#fff", 
+        hover_color="#1B1E25", 
+        cursor="hand2",
+        command=lambda: MostrarJuegoSpeaking(frameContenedorJuegos)
+    )
+    btnSpeaking.pack(fill= "x", side="top", pady=(0,5))
+
+    btnWriting = ctk.CTkButton(
+        frameContenedorOpcionesMenu, 
+        text="Writing", 
+        height=40, 
+        font=("Arial", 16, "bold"), 
+        fg_color="#2F2F2F", 
+        text_color="#fff", 
+        hover_color="#1B1E25", 
+        cursor="hand2",
+        command=lambda: MostrarJuegoWriting(frameContenedorJuegos)
+    )
+    btnWriting.pack(fill= "x", side="top", pady=(0,5))
+
+    # ------------------------------
     btnPuntuaciones = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Score", 
@@ -122,12 +183,31 @@ def Dashboard():
 
     root.mainloop()
 
+def cerrarJuego(juego):
+    for child in juego.winfo_children():
+        child.destroy()
+
+def MostrarJuegoListening(contenedor):
+    cerrarJuego(contenedor)
+    listening_menu(contenedor)
+
+def MostrarJuegoReading(contenedor):
+    cerrarJuego(contenedor)
+    reading_menu(contenedor)
+
+def MostrarJuegoSpeaking(contenedor):
+    cerrarJuego(contenedor)
+    speaking_menu(contenedor)
+
+def MostrarJuegoWriting(contenedor):
+    cerrarJuego(contenedor)
+    writing_menu(contenedor)
+
 def cerrarSesion(root):
     root.destroy()
+    forms.Login.Login()
     print("Inicia Login y se borra los datos del usuario guardados en userLoged.json")
 
 def readFile():
     # leer el fichero json y guardarlo en variables para rellenar el dashboard
     print("hola")
-
-readFile()

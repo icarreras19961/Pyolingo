@@ -1,5 +1,5 @@
 import customtkinter as ctk
-from Dashboard import Dashboard
+from dashboard import Dashboard
 def FormRegister(root, contenedorDeFormulario):
 
     formularioRegister = ctk.CTkFrame(
