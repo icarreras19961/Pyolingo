@@ -1,10 +1,9 @@
-from tkinter import *
-import customtkinter
+import customtkinter as ctk
+from Dashboard import Dashboard
 # from form_register import FormRegister
 # Conexion imports
 import mariadb
 import sys
-
 
 # Variables Globales
 nombreLogin = ""
@@ -12,90 +11,89 @@ pwdLogin = ""
 entryLoginNombre = None
 entryLoginPwd = None 
 
-
-def on_enter(event, button, textColor):
-    button.configure(text_color=textColor)  # Cambiar color de texto a rojo cuando el ratón entra
-
-def on_leave(event, button, textColor):
-    button.configure(text_color=textColor)
-
-def FormLogin():
+def FormLogin(root, contenedorDeFormulario):
     global entryLoginNombre
     global entryLoginPwd
-    # Ventana principal
-    main = customtkinter.CTk()
-    main.title("Pyolingo")
-    main.geometry("1200x650")
-    main.resizable(False, False)
-
-    # FrameMain 
-    frameMain = Frame(main, bg="#f7f7f7")
-    frameMain.pack(fill="both", expand=True)
-    frameMain.grid_columnconfigure(0, weight=1)
-    frameMain.grid_columnconfigure(1, weight=1)
-    frameMain.grid_rowconfigure(0, weight=1)
-
-    # Contenedor donde estara el logo
-    frameLogo = Frame(frameMain, bg="#FFCC00")
-    frameLogo.grid(row=0, column=0, sticky="nsew")
-
-    # Contenedor donde estara el formulario login
-    frameLogin = Frame(frameMain, bg="#f7f7f7")
-    frameLogin.grid(row=0, column=1, sticky="nsew")
-
-    # Contenido FrameLogo
-    img = PhotoImage(file="logo.png")
-    lblLogoImg = Label(frameLogo, image=img, width=400, height=500, bg="#FFCC00")
-    lblLogoImg.pack_propagate(False)
-    lblLogoImg.pack(expand=True)
-
-    lblMensajeRegistrarseInicio = customtkinter.CTkLabel(frameLogo, corner_radius=10, text="¿No tienes una cuenta?", fg_color="#f7f7f7", text_color="black", width=500, height=60, font=("Arial", 24), anchor="w")
-    lblMensajeRegistrarseInicio.place(x=50, y=30)
-
-    btnRegistrarse = customtkinter.CTkButton(frameLogo, width=0, height=60, text="Registrate", fg_color="#f7f7f7", text_color="#FFCC00", font=("Arial", 24, "bold"), corner_radius=0, cursor="hand2", hover_color="white")
-    btnRegistrarse.place(x=320, y=30)
-
-    lblMensajeRegistrarseFinal = customtkinter.CTkLabel(frameLogo,text="ya.", fg_color="#f7f7f7", text_color="black", height=60, font=("Arial", 24), anchor="w")
-    lblMensajeRegistrarseFinal.place(x=450, y=30)
-
-    # Asociar los eventos
-    btnRegistrarse.bind("<Enter>", lambda event, button=btnRegistrarse: on_enter(event, button, "#D1A800"))
-    btnRegistrarse.bind("<Leave>", lambda event, button=btnRegistrarse: on_leave(event, button, "#FFCC00"))
-
-    # Contenido FrameLogin
-    formularioLogin = Frame(frameLogin, width=400, height=500, bg="#f7f7f7")
-    formularioLogin.pack_propagate(False)
-    formularioLogin.pack(expand=True)
-
-    lblLoginTitulo = Label(formularioLogin, text="Login", font=("Arial", 32), bg="#f7f7f7")
-    lblLoginTitulo.pack(fill="x")
-
-    div1 = Frame(formularioLogin, bg="#f7f7f7", pady=40)
-    div1.pack(fill="x")
-
-    div2 = Frame(div1, bg="#f7f7f7", pady=11)
-    div2.pack(fill="x")
     
-    lblLoginNombre = Label(div2, text="Nombre de Usuario", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
-    lblLoginNombre.pack(fill="x")
-    entryLoginNombre = customtkinter.CTkEntry(div2, placeholder_text="Ingresa tu usuario",font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
-    entryLoginNombre.pack(fill="x")    
+    formularioLogin = ctk.CTkFrame(
+        contenedorDeFormulario, 
+        fg_color="#f7f7f7", 
+        width=450,
+        height=450
+    )
+    formularioLogin.pack_propagate(False)
+    formularioLogin.place(relx=0.5, rely=0.5, anchor="center")
 
-    div3 = Frame(div1, bg="#f7f7f7", pady=11)
-    div3.pack(fill="x")
+    lbTituloFormLogin = ctk.CTkLabel(
+        formularioLogin, 
+        text="Login", 
+        text_color="#000", 
+        font=("Arial", 32, "bold")
+    )
+    lbTituloFormLogin.pack(side="top", fill="x", pady=20)
 
-    lblLoginPwd = Label(div3, text="Contraseña", font=("Arial", 16), anchor="w", pady=6, bg="#f7f7f7")
-    lblLoginPwd.pack(fill="x")
-    entryLoginPwd = customtkinter.CTkEntry(div3, show="*", placeholder_text="Ingresa tu contraseña", font=("Arial", 14), height=50, text_color="black", fg_color=("black", "#EBEBEB"), corner_radius=10, border_color="#f7f7f7")
-    entryLoginPwd.pack(fill="x")
+    lbLoginUsuario = ctk.CTkLabel(
+        formularioLogin, 
+        text="Usuario", 
+        text_color="#000", 
+        font=("Arial", 16), 
+        anchor="w", 
+        fg_color="#f7f7f7"
+    )
+    lbLoginUsuario.pack(side="top", fill="x", padx=(5,0))
 
-    btnValidarUsuario = customtkinter.CTkButton(formularioLogin, text="Iniciar Sesión", font=("Arial", 20), width=150, height=50, anchor="center",text_color="black", fg_color=("black", "#FFCC00"), hover_color="#ECBD00", corner_radius=10, command=conexionLogin)
+    entryLoginNombre = ctk.CTkEntry(
+        formularioLogin,
+        placeholder_text="Ingresa tu usuario",
+        font=("Arial", 14), 
+        height=50, 
+        text_color="black", 
+        fg_color="#EBEBEB", 
+        corner_radius=10, 
+        border_color="#f7f7f7"
+    )
+    entryLoginNombre.pack(side="top", fill="x", pady=(0,20))    
+
+    lbLoginPwd = ctk.CTkLabel(
+        formularioLogin, 
+        text="Contraseña", 
+        text_color="#000", 
+        font=("Arial", 16), 
+        anchor="w", 
+        fg_color="#f7f7f7"
+    )
+    lbLoginPwd.pack(side="top", fill="x", pady=(5,0))
+
+    entryLoginPwd = ctk.CTkEntry(
+        formularioLogin, 
+        show="*", 
+        placeholder_text="Ingresa tu contraseña", 
+        font=("Arial", 14),
+        height=50, 
+        text_color="black", 
+        fg_color=("black", "#EBEBEB"), 
+        corner_radius=10, 
+        border_color="#f7f7f7"
+    )
+    entryLoginPwd.pack(side="top", fill="x", pady=(0,40))
+
+    btnValidarUsuario = ctk.CTkButton(
+        formularioLogin, 
+        text="Iniciar Sesión", 
+        font=("Arial", 20, "bold"), 
+        width=200, 
+        height=50, 
+        anchor="center", 
+        text_color="black",
+        fg_color="#FFCC00", 
+        hover_color="#ECBD00", 
+        corner_radius=10, 
+        command=lambda: conexionLogin(root)
+    )
     btnValidarUsuario.pack()
     
-    main.mainloop()
-
-
-def conexionLogin():
+    
+def conexionLogin(root):
     entryLoginNombre  # Usa la variable global
     entryLoginPwd
     # Obtén el valor introducido en entryLoginNombre
@@ -135,7 +133,7 @@ def conexionLogin():
             file.write(f"First Name: {reader[1]}, pwd: {reader[2]}")
             file.close()
             print(f"First Name: {reader[1]}, pwd: {reader[2]}")
-            
+            CerrarAplicacion(root)
             
         
     except:
@@ -143,3 +141,9 @@ def conexionLogin():
         
    
     cur.close()
+
+
+
+def CerrarAplicacion(root):
+    root.destroy()
+    Dashboard()
