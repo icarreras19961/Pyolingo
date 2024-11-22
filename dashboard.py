@@ -6,28 +6,29 @@ from speaking.speaking_menu import speaking_menu
 from writing.writing_menu import writing_menu
 import forms.Login
 
-
+# 13151A
 # FFCC00 Amarillo
 # 2F2F2F Gris
 def Dashboard():
     # Ventana principal
     root = ctk.CTk()
     root.title("Pyolingo")
-    root.geometry("1200x650")
+    root.geometry("1200x750")
+    root.minsize(1200, 750)
     root.grid_propagate(0)
     
     # FrameMain
     frameMain = ctk.CTkFrame(root, fg_color="#f7f7f7")
     frameMain.pack(fill="both", expand=True)
-    frameMain.grid_columnconfigure(0, minsize=300)
+    frameMain.grid_columnconfigure(0, minsize=250)
     frameMain.grid_columnconfigure(1, weight=1)
     frameMain.grid_rowconfigure(0, weight=1)
 
     # Contenedor del Menú
     frameMenu = ctk.CTkFrame(
         frameMain, 
-        fg_color="#FFCC00", 
-        width=300,
+        fg_color="#222222", 
+        width=250,
         corner_radius=0
     )
     frameMenu.grid(row=0, column=0, sticky="nsew")
@@ -54,7 +55,7 @@ def Dashboard():
     lbAvatar = tk.Label(
         frameMenu, 
         image=img, 
-        bg="#FFCC00"
+        bg="#13151A"
     )
     lbAvatar.image = img
     lbAvatar.pack(pady=(20, 20))
@@ -64,29 +65,35 @@ def Dashboard():
         text="Nombre Usuario", 
         text_color="#000",
         font=("Arial", 16, "bold"), 
-        fg_color="#FFCC00"
+        fg_color="#13151A"
     )
     lbNombreUsuario.pack(pady=(0, 10))
 
     # --------------------- Contenedor de botones ------------------
     frameContenedorOpcionesMenu = ctk.CTkFrame(
         frameMenu, 
-        fg_color="#FFCC00", 
-        width=250,
+        fg_color="#222222", 
+        width=220,
         height=400
     )
     frameContenedorOpcionesMenu.pack_propagate(False)
     frameContenedorOpcionesMenu.pack(fill="y", expand=True)
 
+
+    # Crear el fondo como un Frame o un Label
+    iconInicio = tk.PhotoImage(file="home.png")
     btnInicio = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Inicio", 
-        height=40, 
-        font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        compound="left",
+        height=50,
+        font=("Arial", 18, "bold"), 
+        fg_color="#222222", 
         text_color="#fff", 
-        hover_color="#1B1E25", 
-        cursor="hand2"
+        hover_color="#454545",
+        anchor="w",
+        cursor="hand2",
+        command=lambda: Inicio(frameContenedorJuegos)
     )
     btnInicio.pack(fill= "x", side="top", pady=(0,5))
 
@@ -94,12 +101,13 @@ def Dashboard():
     btnListening = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Listening", 
-        height=40, 
+        height=50, 
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
+        anchor="w",
         command=lambda: MostrarJuegoListening(frameContenedorJuegos)
     )
     btnListening.pack(fill= "x", side="top", pady=(0,5))
@@ -107,12 +115,13 @@ def Dashboard():
     btnReading = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Reading", 
-        height=40, 
+        height=50, 
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
+        anchor="w",
         command=lambda: MostrarJuegoReading(frameContenedorJuegos)
     )
     btnReading.pack(fill= "x", side="top", pady=(0,5))
@@ -120,12 +129,13 @@ def Dashboard():
     btnSpeaking = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Speaking", 
-        height=40, 
+        height=50,
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
+        anchor="w",
         command=lambda: MostrarJuegoSpeaking(frameContenedorJuegos)
     )
     btnSpeaking.pack(fill= "x", side="top", pady=(0,5))
@@ -133,12 +143,13 @@ def Dashboard():
     btnWriting = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Writing", 
-        height=40, 
+        height=50,
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
+        anchor="w",
         command=lambda: MostrarJuegoWriting(frameContenedorJuegos)
     )
     btnWriting.pack(fill= "x", side="top", pady=(0,5))
@@ -147,36 +158,39 @@ def Dashboard():
     btnPuntuaciones = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Score", 
-        height=40, 
+        height=50,
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
-        cursor="hand2"
+        cursor="hand2",
+        anchor="w"
     )
     btnPuntuaciones.pack(fill= "x", side="top", pady=(0,5))
 
     btnAjustes = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Ajustes", 
-        height=40, 
+        height=50, 
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
-        cursor="hand2"
+        cursor="hand2",
+        anchor="w"
     )
     btnAjustes.pack(fill= "x", side="top", pady=(0,5))
 
     btnCerrarSesion = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Cerrar Sesión", 
-        height=40, 
+        height=50, 
         font=("Arial", 16, "bold"), 
-        fg_color="#2F2F2F", 
+        fg_color="#13151A", 
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
+        anchor="w",
         command=lambda: cerrarSesion(root)
     )
     btnCerrarSesion.pack(fill= "x", side="top", pady=(0,5))
@@ -186,6 +200,45 @@ def Dashboard():
 def cerrarJuego(juego):
     for child in juego.winfo_children():
         child.destroy()
+
+def Inicio(contenedor):
+    frameContenedorInicio = ctk.CTkFrame(contenedor, fg_color="blue", corner_radius=0)
+    frameContenedorInicio.columnconfigure(0, weight=1)
+    frameContenedorInicio.rowconfigure(0, minsize=50)
+    frameContenedorInicio.rowconfigure(1, weight=1)
+    frameContenedorInicio.pack(fill="both", expand=True)
+
+    frameContenedorTitulo = ctk.CTkFrame(
+        frameContenedorInicio,
+        fg_color="#f7f7f7",
+        corner_radius=0,
+        border_color="#000",
+        border_width=2
+    )
+    frameContenedorTitulo.grid(row=0, column=0, sticky="nsew")
+    # frameContenedorTitulo.pack(fill="x", expand=True)
+
+    lbTituloInicio = ctk.CTkLabel(
+        frameContenedorTitulo, 
+        text="Pyolingo", 
+        text_color="#000", 
+        fg_color="transparent",
+        font=("Arial", 36, "bold"),
+        anchor="w"
+    )
+    lbTituloInicio.pack(fill="x", pady=15)
+
+    linea = ctk.CTkLabel(
+        frameContenedorTitulo,
+        
+    )
+
+    # frameInicioContenido = ctk.CTkFrame(contenedor, fg_color="red")
+    # frameInicioContenido.columnconfigure(0, minsize=300)
+    # frameInicioContenido.columnconfigure(1, minsize=300)
+    # frameInicioContenido.rowconfigure(0, minsize=300)
+    # frameInicioContenido.rowconfigure(1, minsize=300)
+    # frameInicioContenido.pack(fill="both", expand=True)
 
 def MostrarJuegoListening(contenedor):
     cerrarJuego(contenedor)
@@ -211,3 +264,5 @@ def cerrarSesion(root):
 def readFile():
     # leer el fichero json y guardarlo en variables para rellenar el dashboard
     print("hola")
+
+Dashboard()
