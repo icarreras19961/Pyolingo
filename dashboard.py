@@ -194,7 +194,7 @@ def Dashboard():
         command=lambda: cerrarSesion(root)
     )
     btnCerrarSesion.pack(fill= "x", side="top", pady=(0,5))
-
+    Inicio(frameContenedorJuegos)
     root.mainloop()
 
 def cerrarJuego(juego):
@@ -202,36 +202,76 @@ def cerrarJuego(juego):
         child.destroy()
 
 def Inicio(contenedor):
-    frameContenedorInicio = ctk.CTkFrame(contenedor, fg_color="blue", corner_radius=0)
-    frameContenedorInicio.columnconfigure(0, weight=1)
-    frameContenedorInicio.rowconfigure(0, minsize=50)
-    frameContenedorInicio.rowconfigure(1, weight=1)
-    frameContenedorInicio.pack(fill="both", expand=True)
-
-    frameContenedorTitulo = ctk.CTkFrame(
-        frameContenedorInicio,
-        fg_color="#f7f7f7",
-        corner_radius=0,
-        border_color="#000",
-        border_width=2
-    )
-    frameContenedorTitulo.grid(row=0, column=0, sticky="nsew")
-    # frameContenedorTitulo.pack(fill="x", expand=True)
+    cerrarJuego(contenedor)
+    frameContenedorInicio = ctk.CTkFrame(contenedor, fg_color="#f7f7f7", corner_radius=0)
+    frameContenedorInicio.pack(fill="both", expand=True, pady=15, padx=30)
 
     lbTituloInicio = ctk.CTkLabel(
-        frameContenedorTitulo, 
+        frameContenedorInicio, 
         text="Pyolingo", 
         text_color="#000", 
         fg_color="transparent",
-        font=("Arial", 36, "bold"),
+        font=("Arial", 36),
         anchor="w"
     )
-    lbTituloInicio.pack(fill="x", pady=15)
+    lbTituloInicio.pack(fill="x", pady=(0, 12))
 
     linea = ctk.CTkLabel(
-        frameContenedorTitulo,
-        
+        frameContenedorInicio,
+        font=("Arial", 2),
+        height=2,
+        fg_color="#000"
+
     )
+    linea.pack(fill="x")
+
+    frameContenedorWriting = ctk.CTkFrame(
+        frameContenedorInicio,
+        width=300,
+        height=300,
+        fg_color="red"
+    )
+    frameContenedorWriting.place(relx=0.2, rely=0.3, anchor="center")
+
+    frameContenedorReading = ctk.CTkFrame(
+        frameContenedorInicio,
+        width=300,
+        height=300,
+        fg_color="red"
+    )
+    frameContenedorReading.place(relx=0.8, rely=0.3, anchor="center")
+
+    # frameContenedorWriting = ctk.CTkFrame(
+    #     frameContenedorInicio,
+    #     width=300,
+    #     height=300,
+    #     fg_color="blue"
+    # )
+    # frameContenedorWriting.place(relx=0.3, rely=0.4, anchor="center")
+
+    # frameContenedorWriting = ctk.CTkFrame(
+    #     frameContenedorInicio,
+    #     width=300,
+    #     height=300,
+    #     fg_color="blue"
+    # )
+    # frameContenedorWriting.place(relx=0.3, rely=0.4, anchor="center")
+
+
+    # writingImage = tk.PhotoImage(file="writingImage.png")
+    # btnMostrarWriting = ctk.CTkButton(
+    #     frameContenedorInicio,
+    #     text="Writing",
+    #     text_color="#000",
+    #     image=writingImage,
+    #     fg_color="transparent",
+    #     hover="#f7f7f7",
+    #     cursor="hand2",
+    #     font=("Arial", 32, "bold"),
+    #     compound="top"
+
+    # )
+    # btnMostrarWriting.place(x=100, y=100)
 
     # frameInicioContenido = ctk.CTkFrame(contenedor, fg_color="red")
     # frameInicioContenido.columnconfigure(0, minsize=300)
