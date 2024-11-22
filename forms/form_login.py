@@ -136,11 +136,14 @@ def conexionLogin(root):
                 "lvl": niveles
             }
             
-            print(type(user_data))
+            user_data_json = json.dumps(user_data)
+            
             # La escritura del fichero
             with open("./userLoged.json","w") as file:
-                json.dumbs(user_data,file,indent=4,separators=(',',': '))
-            
+                try:
+                    json.dump(user_data_json,file,indent=4)
+                except:
+                    print("Error al insertar datos")
             
             CerrarAplicacion(root)
             

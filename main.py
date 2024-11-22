@@ -12,15 +12,20 @@ usuarioConectado = False
 # Oara detectar si hay algun usuario en el fichero de userloged y con eso pues abrir el login o la pantalla main
 def hayUser():
     global usuarioConectado
-    file = open("./userLoged.json","r")
-    datos = json.load(file)
-    if datos["name"] is None:
-        usuarioConectado = False
-    else:       
-        usuarioConectado = True
+    name = None
+    with open("./userLoged.json","r") as file:
+        datos = json.load(file)
+        name = datos.get("name")
+        print(name)
+        # if datos.get("name") is None:
+        #     usuarioConectado = False
+        # else:       
+        #     usuarioConectado = True
 
 # Para abrir o el login o el "main"
 def saberSiLogin():
+    # Si no arranca la app es porque estoy haciendo cosas con el login
+    # pon a mano el true dentro del siguiente if para que arranque
     if(usuarioConectado):
         Dashboard()
     else:
