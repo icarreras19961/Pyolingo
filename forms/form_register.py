@@ -122,14 +122,14 @@ def CerrarAplicacion(root):
     nombreRegister = entryRegisterUsuario.get()
     pwdRegister = entryRegisterPwd.get()
     emailRegister = entryRegisterEmail.get()
-    
+    jsonLvl= "{}"
     print(nombreRegister +" "+ pwdRegister+" "+emailRegister)
     # INSERT en la base de datos y Guardar el usuario que se acaba de resistrar userLoged
     # Destruimos todo la aplicacion de Login y iniciamos Dashboard
     cur = conexion().cursor()
     try:
         cur.execute(
-            "SELECT * FROM usuario"
+            f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,{nombreRegister},{pwdRegister},{emailRegister},{jsonLvl})"
         )
     except:
         print("Ha fallado")

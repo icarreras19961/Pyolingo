@@ -251,4 +251,3 @@ def readFile():
     # leer el fichero json y guardarlo en variables para rellenar el dashboard
     print("hola")
 
-Dashboard()
