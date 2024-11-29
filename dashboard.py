@@ -58,7 +58,7 @@ def Dashboard():
         bg="#FFCC00"
     )
     lbAvatar.image = img
-    lbAvatar.pack(pady=(20, 20))
+    lbAvatar.pack(pady=(150, 20))
 
     lbNombreUsuario = ctk.CTkLabel(
         frameMenu, 
@@ -84,13 +84,11 @@ def Dashboard():
     btnInicio = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Inicio", 
-        compound="left",
         height=50,
         font=("Arial", 18, "bold"), 
         fg_color="#2F2F2F", 
         text_color="#fff", 
         hover_color="#454545",
-        anchor="w",
         cursor="hand2",
         command=lambda: Inicio(frameContenedorJuegos)
     )
@@ -162,8 +160,7 @@ def Dashboard():
         fg_color="#2F2F2F", 
         text_color="#fff", 
         hover_color="#1B1E25", 
-        cursor="hand2",
-        anchor="w"
+        cursor="hand2"
     )
     btnPuntuaciones.pack(fill= "x", side="top", pady=(0,5))
 
@@ -175,8 +172,7 @@ def Dashboard():
         fg_color="#2F2F2F", 
         text_color="#fff", 
         hover_color="#1B1E25", 
-        cursor="hand2",
-        anchor="w"
+        cursor="hand2"
     )
     btnAjustes.pack(fill= "x", side="top", pady=(0,5))
 
@@ -189,7 +185,6 @@ def Dashboard():
         text_color="#fff", 
         hover_color="#1B1E25", 
         cursor="hand2",
-        anchor="w",
         command=lambda: cerrarSesion(root)
     )
     btnCerrarSesion.pack(fill= "x", side="top", pady=(0,5))
@@ -232,56 +227,61 @@ def Inicio(contenedor):
     frameContenedorMenuJuegos.pack(fill="both", expand=True)
 
     imgWriting = tk.PhotoImage(file="writing.png")
-    btnWritinga = ctk.CTkButton(
+    btnWriting = ctk.CTkButton(
         frameContenedorMenuJuegos,
         text="Writing",
         text_color="#000",
         font=("Arial", 40),
         image=imgWriting,
         fg_color="#f7f7f7",
-        hover_color="#2F2F2F",
-        compound="top"
+        hover_color="#EBEBEB",
+        compound="top",
+        command=lambda: MostrarJuegoWriting(contenedor)
     )
-    btnWritinga.grid(row=0, column=0)
+    btnWriting.grid(row=0, column=0)
 
     imgReading = tk.PhotoImage(file="reading.png")
-    btnReadinga = ctk.CTkButton(
+    btnReading = ctk.CTkButton(
         frameContenedorMenuJuegos,
         text="Reading",
         text_color="#000",
         font=("Arial", 40),
         image=imgReading,
         fg_color="#f7f7f7",
-        hover_color="#2F2F2F",
-        compound="top"
+        hover_color="#EBEBEB",
+        compound="top",
+        command=lambda: MostrarJuegoReading(contenedor)
+
     )
-    btnReadinga.grid(row=0, column=1)
+    btnReading.grid(row=0, column=1)
 
     imgListening = tk.PhotoImage(file="listening.png")
-    btnListeninga = ctk.CTkButton(
+    btnListening = ctk.CTkButton(
         frameContenedorMenuJuegos,
         text="Listening",
         text_color="#000",
         font=("Arial", 40),
         image=imgListening,
         fg_color="#f7f7f7",
-        hover_color="#2F2F2F",
-        compound="top"
+        hover_color="#EBEBEB",
+        compound="top",
+        command=lambda: MostrarJuegoListening(contenedor)
     )
-    btnListeninga.grid(row=1, column=0)
+    btnListening.grid(row=1, column=0)
 
     imgSpeaking = tk.PhotoImage(file="speaking.png")
-    btnSpeakingo = ctk.CTkButton(
+    btnSpeaking = ctk.CTkButton(
         frameContenedorMenuJuegos,
         text="Speaking",
         text_color="#000",
         font=("Arial", 40),
         image=imgSpeaking,
         fg_color="#f7f7f7",
-        hover_color="#2F2F2F",
-        compound="top"
+        hover_color="#EBEBEB",
+        compound="top",
+        command=lambda: MostrarJuegoSpeaking(contenedor)
     )
-    btnSpeakingo.grid(row=1, column=1)
+    btnSpeaking.grid(row=1, column=1)
 
 def MostrarJuegoListening(contenedor):
     cerrarJuego(contenedor)
