@@ -1,9 +1,17 @@
-from tkinter import * 
-from tkinter.ttk import *
-from tkinter import messagebox as MessageBox
-def listening_menu():
+import tkinter as tk
+import customtkinter as ctk
 
-    root = Tk()
+def listening_menu(contenedor):
+    frameJuegoListening = ctk.CTkFrame(
+        contenedor, 
+        fg_color="#f7f7f7"
+    )
+    frameJuegoListening.pack_propagate(False)
+    frameJuegoListening.pack(fill="both", expand=True)
 
-    root.geometry("900x500")
-    root.mainloop()
+    lbTitulo = ctk.CTkLabel(
+        frameJuegoListening,
+        text="Listening",
+        text_color="#000"
+    )
+    lbTitulo.pack()

@@ -1,9 +1,17 @@
-from tkinter import * 
-from tkinter.ttk import *
-from tkinter import messagebox as MessageBox
-def reading_menu():
+import tkinter as tk
+import customtkinter as ctk
 
-    root = Tk()
+def reading_menu(contenedor):
+    frameJuegoReading = ctk.CTkFrame(
+        contenedor, 
+        fg_color="#f7f7f7"
+    )
+    frameJuegoReading.pack_propagate(False)
+    frameJuegoReading.pack(fill="both", expand=True)
 
-    root.geometry("900x500")
-    root.mainloop()
+    lbTitulo = ctk.CTkLabel(
+        frameJuegoReading,
+        text="Reading",
+        text_color="#000"
+    )
+    lbTitulo.pack()

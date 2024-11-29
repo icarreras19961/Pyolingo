@@ -1,7 +1,6 @@
 import customtkinter as ctk
 from dashboard import Dashboard
-# from form_register import FormRegister
-# Conexion imports
+
 import mariadb
 import sys
 import json

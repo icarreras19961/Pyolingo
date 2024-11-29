@@ -1,11 +1,5 @@
 import customtkinter as ctk
 from dashboard import Dashboard
-from conexion import conexion
-
-# Las variables globales que necesito para hacer el insert
-entryRegisterUsuario = None
-entryLoginPwd = None
-entryRegisterEmail = None
 
 def FormRegister(root, contenedorDeFormulario):
     global entryRegisterUsuario
