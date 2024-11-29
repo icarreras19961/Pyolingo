@@ -3,6 +3,7 @@ from dashboard import Dashboard
 
 import mariadb
 import sys
+import json
 
 # Variables Globales
 nombreLogin = ""
@@ -127,16 +128,27 @@ def conexionLogin(root):
         if reader is None:
             print("nada")
         else:
+            
+            niveles = json.loads(reader[4])
+            user_data = {
+                "name":reader[1],
+                "lvl": niveles
+            }
+            
+            user_data_json = json.dumps(user_data)
+            
             # La escritura del fichero
-            file = open("./userLoged.json","w")
-            file.write(f"First Name: {reader[1]}, pwd: {reader[2]}")
-            file.close()
-            print(f"First Name: {reader[1]}, pwd: {reader[2]}")
+            with open("./userLoged.json","w") as file:
+                try:
+                    json.dump(user_data_json,file,indent=4)
+                except:
+                    print("Error al insertar datos")
+            
             CerrarAplicacion(root)
             
         
     except:
-        print("User not found")
+        print("User not found (error en la query)")
         
    
     cur.close()

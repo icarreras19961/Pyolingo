@@ -1,6 +1,10 @@
 import customtkinter as ctk
 from dashboard import Dashboard
+
 def FormRegister(root, contenedorDeFormulario):
+    global entryRegisterUsuario
+    global entryLoginPwd
+    global entryRegisterEmail
 
     formularioRegister = ctk.CTkFrame(
         contenedorDeFormulario, 
@@ -46,7 +50,7 @@ def FormRegister(root, contenedorDeFormulario):
     entryRegisterUsuario.pack(side="top", fill="x", pady=(0,20))
     
     # --------------------- Correo ------------------------
-    lbRegisterUsuario = ctk.CTkLabel(
+    lbRegisterEmail = ctk.CTkLabel(
         formularioRegister, 
         text="Email", 
         text_color="#000", 
@@ -54,11 +58,11 @@ def FormRegister(root, contenedorDeFormulario):
         anchor="w", 
         fg_color="#f7f7f7"
     )
-    lbRegisterUsuario.pack(side="top", fill="x", padx=(5,0))
+    lbRegisterEmail.pack(side="top", fill="x", padx=(5,0))
 
-    entryRegisterUsuario = ctk.CTkEntry(
+    entryRegisterEmail = ctk.CTkEntry(
         formularioRegister,
-        placeholder_text="Ingresa tu usuario",
+        placeholder_text="Ingresa tu email",
         font=("Arial", 14), 
         height=50, 
         text_color="black", 
@@ -66,7 +70,7 @@ def FormRegister(root, contenedorDeFormulario):
         corner_radius=10, 
         border_color="#f7f7f7"
     )
-    entryRegisterUsuario.pack(side="top", fill="x", pady=(0,20))       
+    entryRegisterEmail.pack(side="top", fill="x", pady=(0,20))       
 
     # --------------------- Contraseña -------------------------
     lbRegisterPwd = ctk.CTkLabel(
@@ -111,5 +115,19 @@ def FormRegister(root, contenedorDeFormulario):
 def CerrarAplicacion(root):
     # INSERT en la base de datos y Guardar el usuario que se acaba de resistrar userLoged
     # Destruimos todo la aplicacion de Login y iniciamos Dashboard
-    root.destroy()
-    Dashboard()
+    cur = conexion().cursor()
+    try:
+        cur.execute(
+            "SELECT * FROM usuario"
+        )
+    except:
+        print("Ha fallado")
+    
+    reader = cur.fetchone()
+    if(reader is None):
+        print("Nada")
+    else:
+        print("puto alvaro")
+    
+    # root.destroy()
+    # Dashboard()
