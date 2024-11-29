@@ -1,9 +1,17 @@
-from tkinter import * 
-from tkinter.ttk import *
-from tkinter import messagebox as MessageBox
-def writing_menu():
+import tkinter as tk
+import customtkinter as ctk
 
-    root = Tk()
+def writing_menu(contenedor):
+    frameJuegoWriting = ctk.CTkFrame(
+        contenedor, 
+        fg_color="#f7f7f7"
+    )
+    frameJuegoWriting.pack_propagate(False)
+    frameJuegoWriting.pack(fill="both", expand=True)
 
-    root.geometry("900x500")
-    root.mainloop()
+    lbTitulo = ctk.CTkLabel(
+        frameJuegoWriting,
+        text="Writing",
+        text_color="#000"
+    )
+    lbTitulo.pack()

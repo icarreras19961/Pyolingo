@@ -1,10 +1,17 @@
-from tkinter import * 
-from tkinter.ttk import *
-from tkinter import messagebox as MessageBox
-# hacer 2 botones que te dejen elegir la tematica
-def speaking_menu():
+import tkinter as tk
+import customtkinter as ctk
 
-    root = Tk()
+def speaking_menu(contenedor):
+    frameJuegoSpeaking = ctk.CTkFrame(
+        contenedor, 
+        fg_color="#f7f7f7"
+    )
+    frameJuegoSpeaking.pack_propagate(False)
+    frameJuegoSpeaking.pack(fill="both", expand=True)
 
-    root.geometry("900x500")
-    root.mainloop()
+    lbTitulo = ctk.CTkLabel(
+        frameJuegoSpeaking,
+        text="Speaking",
+        text_color="#000"
+    )
+    lbTitulo.pack()
