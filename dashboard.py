@@ -95,63 +95,6 @@ def Dashboard():
     btnInicio.pack(fill= "x", side="top", pady=(0,5))
 
     # ------------------------------
-    # btnListening = ctk.CTkButton(
-    #     frameContenedorOpcionesMenu, 
-    #     text="Listening", 
-    #     height=50, 
-    #     font=("Arial", 16, "bold"), 
-    #     fg_color="#13151A", 
-    #     text_color="#fff", 
-    #     hover_color="#1B1E25", 
-    #     cursor="hand2",
-    #     anchor="w",
-    #     command=lambda: MostrarJuegoListening(frameContenedorJuegos)
-    # )
-    # btnListening.pack(fill= "x", side="top", pady=(0,5))
-
-    # btnReading = ctk.CTkButton(
-    #     frameContenedorOpcionesMenu, 
-    #     text="Reading", 
-    #     height=50, 
-    #     font=("Arial", 16, "bold"), 
-    #     fg_color="#13151A", 
-    #     text_color="#fff", 
-    #     hover_color="#1B1E25", 
-    #     cursor="hand2",
-    #     anchor="w",
-    #     command=lambda: MostrarJuegoReading(frameContenedorJuegos)
-    # )
-    # btnReading.pack(fill= "x", side="top", pady=(0,5))
-
-    # btnSpeaking = ctk.CTkButton(
-    #     frameContenedorOpcionesMenu, 
-    #     text="Speaking", 
-    #     height=50,
-    #     font=("Arial", 16, "bold"), 
-    #     fg_color="#13151A", 
-    #     text_color="#fff", 
-    #     hover_color="#1B1E25", 
-    #     cursor="hand2",
-    #     anchor="w",
-    #     command=lambda: MostrarJuegoSpeaking(frameContenedorJuegos)
-    # )
-    # btnSpeaking.pack(fill= "x", side="top", pady=(0,5))
-
-    # btnWriting = ctk.CTkButton(
-    #     frameContenedorOpcionesMenu, 
-    #     text="Writing", 
-    #     height=50,
-    #     font=("Arial", 16, "bold"), 
-    #     fg_color="#13151A", 
-    #     text_color="#fff", 
-    #     hover_color="#1B1E25", 
-    #     cursor="hand2",
-    #     anchor="w",
-    #     command=lambda: MostrarJuegoWriting(frameContenedorJuegos)
-    # )
-    # btnWriting.pack(fill= "x", side="top", pady=(0,5))
-
-    # ------------------------------
     btnPuntuaciones = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Score", 
