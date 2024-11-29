@@ -4,12 +4,12 @@ from conexion import conexion
 
 # Las variables globales que necesito para hacer el insert
 entryRegisterUsuario = None
-entryLoginPwd = None
+entryRegisterPwd = None
 entryRegisterEmail = None
 
 def FormRegister(root, contenedorDeFormulario):
     global entryRegisterUsuario
-    global entryLoginPwd
+    global entryRegisterPwd
     global entryRegisterEmail
 
     formularioRegister = ctk.CTkFrame(
@@ -89,7 +89,7 @@ def FormRegister(root, contenedorDeFormulario):
     )
     lbRegisterPwd.pack(side="top", fill="x", padx=(5,0))
 
-    entryLoginPwd = ctk.CTkEntry(
+    entryRegisterPwd = ctk.CTkEntry(
         formularioRegister, 
         show="*", 
         placeholder_text="Ingresa tu contraseña", 
@@ -100,7 +100,7 @@ def FormRegister(root, contenedorDeFormulario):
         corner_radius=10, 
         border_color="#f7f7f7"
     )
-    entryLoginPwd.pack(side="top", fill="x", pady=(0,40))
+    entryRegisterPwd.pack(side="top", fill="x", pady=(0,40))
 
     # ----------------- Registrar Usuario --------------------------
     btnRegistrarUsuario = ctk.CTkButton(
@@ -119,6 +119,11 @@ def FormRegister(root, contenedorDeFormulario):
     btnRegistrarUsuario.pack()
 
 def CerrarAplicacion(root):
+    nombreRegister = entryRegisterUsuario.get()
+    pwdRegister = entryRegisterPwd.get()
+    emailRegister = entryRegisterEmail.get()
+    
+    print(nombreRegister +" "+ pwdRegister+" "+emailRegister)
     # INSERT en la base de datos y Guardar el usuario que se acaba de resistrar userLoged
     # Destruimos todo la aplicacion de Login y iniciamos Dashboard
     cur = conexion().cursor()
