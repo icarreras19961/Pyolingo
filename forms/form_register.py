@@ -1,6 +1,7 @@
 import customtkinter as ctk
 from dashboard import Dashboard
 from conexion import conexion
+import json
 
 # Las variables globales que necesito para hacer el insert
 entryRegisterUsuario = None
@@ -122,23 +123,61 @@ def CerrarAplicacion(root):
     nombreRegister = entryRegisterUsuario.get()
     pwdRegister = entryRegisterPwd.get()
     emailRegister = entryRegisterEmail.get()
-    jsonLvl= "{}"
-    print(nombreRegister +" "+ pwdRegister+" "+emailRegister)
+    jsonLvl= {
+            "lvl": [
+                {
+                    "writing": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "reading": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "listening": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "speaking": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                }
+            ]
+        }
+    print(nombreRegister +" "+ pwdRegister+" "+emailRegister+" "+json.dumps(jsonLvl))
     # INSERT en la base de datos y Guardar el usuario que se acaba de resistrar userLoged
     # Destruimos todo la aplicacion de Login y iniciamos Dashboard
     cur = conexion().cursor()
+    # print(f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')")
     try:
-        cur.execute(
-            f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,{nombreRegister},{pwdRegister},{emailRegister},{jsonLvl})"
-        )
+        cur.execute(f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')")
+        conexion().commit()
     except:
         print("Ha fallado")
-    
-    reader = cur.fetchone()
-    if(reader is None):
-        print("Nada")
-    else:
-        print("puto alvaro")
+ 
     
     # root.destroy()
     # Dashboard()
