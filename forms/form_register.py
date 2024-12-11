@@ -1,7 +1,9 @@
 import customtkinter as ctk
 from dashboard import Dashboard
-from conexion import conexion
+
 import json
+import mariadb
+import sys
 
 # Las variables globales que necesito para hacer el insert
 entryRegisterUsuario = None
@@ -170,14 +172,84 @@ def CerrarAplicacion(root):
     print(nombreRegister +" "+ pwdRegister+" "+emailRegister+" "+json.dumps(jsonLvl))
     # INSERT en la base de datos y Guardar el usuario que se acaba de resistrar userLoged
     # Destruimos todo la aplicacion de Login y iniciamos Dashboard
-    cur = conexion().cursor()
-    # print(f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')")
     try:
-        cur.execute(f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')")
-        conexion().commit()
-    except:
-        print("Ha fallado")
- 
+        conn = mariadb.connect(
+        user="root",
+        password="",
+        host="127.0.0.1",
+        port=3306,
+        database="pyolingo"
+        )
+        
+    except mariadb.Error as e:
+        print("Error connecting to MariaDB Platform: {e}")
+        sys.exit(1)
+    cur = conn.cursor()
+    try:
+        
+        query = f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')"
+        cur.execute(query)
+        conn.commit()
+        print("Un exito")
+        # with open("./userLoged.json","w") as file:
+        user_registered = {
+            "name": nombreRegister,
+            "lvl": [
+                {
+                    "writing": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "reading": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "listening": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                },
+                {
+                    "speaking": [
+                        {
+                            "informatica": False
+                        },
+                        {
+                            "deportes": False
+                        }
+                    ]
+                }
+            ]
+        }
+        user_registered_json = json.dumps(user_registered)
+        with open("./userLoged.json","w") as file:
+                try:
+                    json.dump(user_registered_json,file,indent=4)
+                except:
+                    print("Error al insertar datos")
+            
+    except Exception as e:
+        print(f"Ha fallado {e}")
+    finally:
+        cur.close()
+        conn.close()
+        root.destroy()
+        Dashboard()
     
-    # root.destroy()
-    # Dashboard()
+    

@@ -5,11 +5,14 @@ from reading.reading_menu import reading_menu
 from speaking.speaking_menu import speaking_menu
 from writing.writing_menu import writing_menu
 import forms.Login
+import json
 
 # 13151A
 # FFCC00 Amarillo
 # 2F2F2F Gris
+
 def Dashboard():
+    
     # Ventana principal
     root = ctk.CTk()
     root.title("Pyolingo")
@@ -59,10 +62,14 @@ def Dashboard():
     )
     lbAvatar.image = img
     lbAvatar.pack(pady=(150, 20))
-
+    with open("./userLoged.json","r") as file:
+            data = json.load(file)
+    json_object = json.loads(data)
+    nombre = json_object["name"]
+    
     lbNombreUsuario = ctk.CTkLabel(
         frameMenu, 
-        text="Nombre Usuario", 
+        text=nombre, 
         text_color="#000",
         font=("Arial", 24, "bold"), 
         fg_color="#FFCC00"
@@ -81,13 +88,14 @@ def Dashboard():
 
 
     # Crear el fondo como un Frame o un Label
+    color = "#fff"
     btnInicio = ctk.CTkButton(
         frameContenedorOpcionesMenu, 
         text="Inicio", 
         height=50,
         font=("Arial", 18, "bold"), 
         fg_color="#2F2F2F", 
-        text_color="#fff", 
+        text_color=color, 
         hover_color="#454545",
         cursor="hand2",
         command=lambda: Inicio(frameContenedorJuegos)
@@ -247,7 +255,5 @@ def cerrarSesion(root):
     forms.Login.Login()
     print("Inicia Login y se borra los datos del usuario guardados en userLoged.json")
 
-def readFile():
-    # leer el fichero json y guardarlo en variables para rellenar el dashboard
-    print("hola")
+
 

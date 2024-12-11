@@ -4,7 +4,7 @@
 import json
 from forms.Login import Login
 from dashboard import Dashboard
-
+import os
 
 # Primero leemos el fichero userLoged si existe un usuario conectado se inicia Dashboard 
 usuarioConectado = False
@@ -13,11 +13,14 @@ usuarioConectado = False
 def hayUser():
     global usuarioConectado
     
-    with open("./userLoged.json","r") as file:
-        data = json.load(file)
-    json_object = json.loads(data)
-    if((not json_object["name"] is None) and (not len(json_object["name"]) == 0)):
-        Dashboard()
+    if not(os.stat("./userLoged.json").st_size == 0):
+        with open("./userLoged.json","r") as file:
+            data = json.load(file)
+        json_object = json.loads(data)
+        if((not json_object["name"] is None) and (not len(json_object["name"]) == 0)):
+            Dashboard()
+        else:
+            Login
     else:
         Login()
 
