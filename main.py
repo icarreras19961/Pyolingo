@@ -13,6 +13,7 @@ usuarioConectado = False
 def hayUser():
     global usuarioConectado
     
+    # Detector de si hay algun registro en fichero de user loged
     if not(os.stat("./userLoged.json").st_size == 0):
         with open("./userLoged.json","r") as file:
             data = json.load(file)

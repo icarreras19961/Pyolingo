@@ -186,12 +186,12 @@ def CerrarAplicacion(root):
         sys.exit(1)
     cur = conn.cursor()
     try:
-        
+        # La query de insert
         query = f"INSERT INTO usuario(id,nombre,pwd,email,lvlComplete)VALUES (DEFAULT,'{nombreRegister}','{pwdRegister}','{emailRegister}','{json.dumps(jsonLvl)}')"
         cur.execute(query)
+        # Hace falta hacer el comit para que la base de datos se actualize
         conn.commit()
         print("Un exito")
-        # with open("./userLoged.json","w") as file:
         user_registered = {
             "name": nombreRegister,
             "lvl": [
@@ -251,5 +251,3 @@ def CerrarAplicacion(root):
         conn.close()
         root.destroy()
         Dashboard()
-    
-    

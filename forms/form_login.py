@@ -102,6 +102,7 @@ def conexionLogin(root):
     print(f"Nombre de Usuario: {nombreLogin}")
     print(f"PWD de Usuario: {pwdLogin}")
     
+    # La conexion a la base de datos
     try:
         conn = mariadb.connect(
         user="root",
@@ -118,13 +119,13 @@ def conexionLogin(root):
     # Get Cursor
     cur = conn.cursor()
     try:
+        # EL metodo que ejecuta las querys
         cur.execute(
             f"SELECT * FROM usuario Where nombre = '{nombreLogin}' AND pwd = '{pwdLogin}'"
         )
         reader = cur.fetchone()
         
         # El registro de login
-        # 
         if reader is None:
             print("nada")
         else:
@@ -134,7 +135,6 @@ def conexionLogin(root):
                 "name":reader[1],
                 "lvl": niveles
             }
-            
             user_data_json = json.dumps(user_data)
             
             # La escritura del fichero
@@ -150,7 +150,6 @@ def conexionLogin(root):
     except:
         print("User not found (error en la query)")
         
-   
     cur.close()
 
 
