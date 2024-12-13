@@ -1,6 +1,8 @@
 import tkinter as tk
 import customtkinter as ctk
 
+btnVolerVentanas = []
+
 def reading_menu(contenedor):
     frameReading = ctk.CTkFrame(
         contenedor, 
@@ -140,6 +142,15 @@ def MenuCategorias(contenedor):
     btnCategoriaPrueba4.grid(row=1, column=2)
 
 
+btnColorDefault = "#EBEBEB"
+btnColorDefaultHover = "#D9D9D9"
+
+btnColorIncorrecto = "#CC3838"
+btnColorIncorrectoHover = "#A52C2C"
+
+btnColorCorrecto = "#48D46D"
+btnColorCorrectoHover = "#3AAE59"
+
 def JuegoReading(contenedor):
     cerrarJuego(contenedor)
 
@@ -165,15 +176,67 @@ def JuegoReading(contenedor):
 
     lbPregunta = ctk.CTkLabel(
         frameJuego,
-        text="Pregunta",
+        text="¿Pregunta a responder?",
         text_color="#000",
-        font=("Arial", 24),
+        font=("Arial", 26),
         anchor="w",
         fg_color="transparent"         
     )
     lbPregunta.pack(anchor="w", pady=24)
 
-    
+    btnRespuesta1 = ctk.CTkButton(
+        frameJuego,
+        text="A) Respuesta 1",
+        text_color="#000",
+        font=("Arial", 18),
+        fg_color=btnColorDefault,
+        hover_color=btnColorDefaultHover,
+        anchor="w",
+        width=300,
+        height=50
+    )
+    btnRespuesta1.pack(anchor="w", pady=(0, 15))
+
+    btnRespuesta2 = ctk.CTkButton(
+        frameJuego,
+        text="B) Respuesta 2",
+        text_color="#000",
+        font=("Arial", 18),
+        fg_color=btnColorCorrecto,
+        hover_color=btnColorCorrectoHover,
+        state="normal",
+        anchor="w",
+        width=300,
+        height=50
+    )
+    btnRespuesta2.pack(anchor="w", pady=(0, 15))
+
+    btnRespuesta3 = ctk.CTkButton(
+        frameJuego,
+        text="C) Respuesta 3",
+        text_color="#000",
+        font=("Arial", 18),
+        fg_color=btnColorIncorrecto,
+        hover_color=btnColorIncorrectoHover,
+        anchor="w",
+        width=300,
+        height=50
+    )
+    btnRespuesta3.pack(anchor="w", pady=(0, 15))
+
+    btnRespuesta4 = ctk.CTkButton(
+        frameJuego,
+        text="D) Respuesta 4",
+        text_color="#000",
+        font=("Arial", 18),
+        fg_color=btnColorDefault,
+        state="disabled",
+        anchor="w",
+        width=300,
+        height=50
+    )
+    btnRespuesta4.pack(anchor="w", pady=(0, 15))
+
 
 
 def cerrarJuego(juego):
