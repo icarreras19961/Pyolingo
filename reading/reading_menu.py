@@ -150,7 +150,7 @@ def JuegoReading(contenedor):
     frameJuego.pack_propagate(False)
     frameJuego.pack(fill="both", expand=True, pady=(12,0), padx=30)
 
-    label = ctk.CTkLabel(
+    lbTextoJuegoReading = ctk.CTkLabel(
         frameJuego,
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet  nisi varius nisl porttitor, et scelerisque libero rutrum.Cras erat  lorem, eleifend rutrum nulla vitae, hendrerit mattis leo.\nFusce at  condimentum lectus. Curabitur vel iaculis ligula, quis lacinia sem.  Fusce in rutrum est, quis imperdiet leo.\nCurabitur feugiat consequat  nunc non porttitor.\nCras erat tellus, viverra eu molestie id, laoreet at ipsum. Aliquam erat volutpat.\nLorem ipsum dolor sit amet, consectetur  adipiscing elit.\nVivamus porta lacus mauris, at molestie elit egestas  sollicitudin.\nCurabitur porta maximus blandit. Fusce pretium lacus sit  amet lorem ultrices rutrum. Curabitur porta lorem ut magna lacinia, vel  rhoncus diam molestie.",
         text_color="#000",
@@ -159,7 +159,21 @@ def JuegoReading(contenedor):
         justify="left",
         fg_color="transparent"
     )
-    label.pack(fill="x")
+    lbTextoJuegoReading.pack(fill="x", anchor="w")
+
+    # ----------------------------------
+
+    lbPregunta = ctk.CTkLabel(
+        frameJuego,
+        text="Pregunta",
+        text_color="#000",
+        font=("Arial", 24),
+        anchor="w",
+        fg_color="transparent"         
+    )
+    lbPregunta.pack(anchor="w", pady=24)
+
+    
 
 
 def cerrarJuego(juego):
