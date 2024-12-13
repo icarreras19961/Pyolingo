@@ -1,5 +1,6 @@
 import mariadb
 import sys
+# Un intento por hacer el codigo estructurado y que no se repitan cosas pero funciona un poco tinkiwinki
 def conexion():
     try:
         conn = mariadb.connect(
