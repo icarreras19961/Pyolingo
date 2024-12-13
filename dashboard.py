@@ -255,5 +255,3 @@ def cerrarSesion(root):
     forms.Login.Login()
     print("Inicia Login y se borra los datos del usuario guardados en userLoged.json")
 
-
-
