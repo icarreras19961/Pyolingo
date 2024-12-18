@@ -37,3 +37,7 @@ Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El p
 3. Con el XAMPP en funcionamiento iremos al navegador accederemos a la ruta(http://localhost/phpmyadmin/).
 4. Una vez en la web pulsamos el boton de nuevo y creamos una base de datos con el nombre de ``pyolingo``.
 5. Una vez creada la base de datos en el boton de import importaremos el fichero ``pyolingo(06-11-2024).sql`` que esta en la ruta ``db/backups``.
+
+### Ejecucion del programa
+1. Cuando ya tengamos todas las dependencias instaladas y la base de datos preparada, nos ubicaremos en el fichero ``main.py``.
+2. Una vez en el fichero ``main.py`` solo tendremos que ejecutar el programa con el boton ``run and debug`` y este se lanzara.
