@@ -25,7 +25,15 @@ Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El p
 - wavio = 0.0.9
 
 ## Guia de instalacion
-1. Es necesario tener instalado en el equipo el python el cual se puede instalar desde su propia pagina web(https://www.python.org/) o desde el store de microsoft.
-2. Una vez echo esto nos movemos al fichero ``hola.ps1`` en la carpeta powerShell.
-3. Una vez en el fichero desde el visual studio code con la extencion para lanzar powerShell le damos a ejecutar y este instalara / actulizara las dependencias para que la app funcione.
+### Instalacion de dependencias
+1. Es necesario tener instalado en el equipo el ``python`` el cual se puede instalar desde su propia pagina web(https://www.python.org/) o desde el store de microsoft.
+2. Una vez echo esto nos movemos al fichero ``hola.ps1`` en la carpeta ``powerShell``.
+3. Una vez en el fichero desde el ``visual studio code`` con la extencion para lanzar powerShell le damos a ejecutar y este instalara / actulizara las dependencias para que la app funcione.
 4. Si la opcion anterior no nos gusta tambien podemos abrir una terminal powerShell y copiar y pegar los comandos que no aparecen comentados.
+
+###Instalacion de la base de datos
+1. Primero sera necesario tener instalado el ``Xampp``  que lo podremos descargar desde su propia web(https://www.apachefriends.org/).
+2. Una vez lo tengamos instalado lo ejecutaremos, encendiendo los botones de ``apache`` , ``MYSQL``.
+3. Con el XAMPP en funcionamiento iremos al navegador accederemos a la ruta(http://localhost/phpmyadmin/).
+4. Una vez en la web pulsamos el boton de nuevo y creamos una base de datos con el nombre de ``pyolingo``.
+5. Una vez creada la base de datos en el boton de import importaremos el fichero ``pyolingo(06-11-2024).sql`` que esta en la ruta ``db/backups``.
