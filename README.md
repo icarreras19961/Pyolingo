@@ -1,4 +1,4 @@
-# Proyecto Pyolingo 2DAM Acceso a datos
+  # Proyecto Pyolingo 2DAM Acceso a datos
 Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El proyecto consiste en hacer una app para aprender idiomas estilo duolingo.
 
 ## Herramientas utilizadas:
@@ -31,7 +31,7 @@ Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El p
 3. Una vez en el fichero desde el ``visual studio code`` con la extencion para lanzar powerShell le damos a ejecutar y este instalara / actulizara las dependencias para que la app funcione.
 4. Si la opcion anterior no nos gusta tambien podemos abrir una terminal powerShell y copiar y pegar los comandos que no aparecen comentados.
 
-###Instalacion de la base de datos
+### Instalacion de la base de datos
 1. Primero sera necesario tener instalado el ``Xampp``  que lo podremos descargar desde su propia web(https://www.apachefriends.org/).
 2. Una vez lo tengamos instalado lo ejecutaremos, encendiendo los botones de ``apache`` , ``MYSQL``.
 3. Con el XAMPP en funcionamiento iremos al navegador accederemos a la ruta(http://localhost/phpmyadmin/).
