@@ -24,7 +24,7 @@ Este es un proyecto desarrollado por un grupo de 3 estudiantes de 2 de dam. El p
 - urllib3 = 2.2.3
 - wavio = 0.0.9
 
-## Guia de instalacion
+## Guia de instalacion / Ejecucion
 ### Instalacion de dependencias
 1. Es necesario tener instalado en el equipo el ``python`` el cual se puede instalar desde su propia pagina web(https://www.python.org/) o desde el store de microsoft.
 2. Una vez echo esto nos movemos al fichero ``hola.ps1`` en la carpeta ``powerShell``.
