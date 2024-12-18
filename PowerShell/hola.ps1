@@ -18,6 +18,7 @@
 # $pinga = pip install certifi
 # $pinga2 = (-split $pinga)[0,1,2]
 # Write-Output $pinga2
+python3 -m pip install --upgrade pip setuptools wheel
 pip install certifi
 pip install charset-normalizer
 pip install customtkinter
@@ -34,3 +35,5 @@ pip install typing_extensions
 pip install urllib3
 pip install wavio
 pip install mariadb
+
+# Stop-process -Name "PowesShell" //Para apagar la terminal

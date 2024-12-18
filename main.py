@@ -21,7 +21,7 @@ def hayUser():
         if((not json_object["name"] is None) and (not len(json_object["name"]) == 0)):
             Dashboard()
         else:
-            Login
+            Login()
     else:
         Login()
 
