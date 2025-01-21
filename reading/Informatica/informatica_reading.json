@@ -1,0 +1,106 @@
+{
+    "facil": [
+        {
+            "id": "1",
+            "descripcion": "A desk is a piece of furniture used for working. It typically has a flat surface for writing, placing a computer, and storing office supplies.",
+            "respuesta": "Desk"
+        },
+        {
+            "id": "2",
+            "descripcion": "An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+            "respuesta": "Chair"
+        },
+        {
+            "id": "3",
+            "descripcion": "A computer is an essential device for work, used for creating documents, sending emails, and accessing the internet.",
+            "respuesta": "Computer"
+        },
+        {
+            "id": "4",
+            "descripcion": "A printer is a device that produces hard copies of digital documents and images. It is commonly used for reports and presentations.",
+            "respuesta": "Printer"
+        },
+        {
+            "id": "5",
+            "descripcion": "A filing cabinet is used to organize and store important papers and files in an office.",
+            "respuesta": "Filing Cabinet"
+        },
+        {
+            "id": "6",
+            "descripcion": "A whiteboard is a large surface used for writing or drawing with markers during meetings or presentations.",
+            "respuesta": "Whiteboard"
+        },
+        {
+            "id": "7",
+            "descripcion": "A telephone is used for making voice calls, whether internal to the office or external.",
+            "respuesta": "Telephone"
+        },
+        {
+            "id": "8",
+            "descripcion": "Stationery includes items like pens, pencils, notepads, and staplers that are essential for everyday office tasks.",
+            "respuesta": "Stationery"
+        },
+        {
+            "id": "9",
+            "descripcion": "Proper office lighting is essential for reducing eye strain and creating a comfortable working environment.",
+            "respuesta": "Lighting"
+        },
+        {
+            "id": "10",
+            "descripcion": "A bookshelf is used for storing books, reference materials, or decorative items in an office.",
+            "respuesta": "Bookshelf"
+        },
+        {
+            "id": "11",
+            "descripcion": "A monitor is a screen used to display information from a computer, essential for visual tasks.",
+            "respuesta": "Monitor"
+        },
+        {
+            "id": "12",
+            "descripcion": "A keyboard is a device used to input text and commands into a computer.",
+            "respuesta": "Keyboard"
+        },
+        {
+            "id": "13",
+            "descripcion": "A mouse is a handheld device used to control the cursor and navigate on a computer screen.",
+            "respuesta": "Mouse"
+        },
+        {
+            "id": "14",
+            "descripcion": "A router is a device that connects the office to the internet and allows multiple devices to access the network.",
+            "respuesta": "Router"
+        },
+        {
+            "id": "15",
+            "descripcion": "A shredder is a machine used to destroy confidential documents by cutting them into small pieces.",
+            "respuesta": "Shredder"
+        },
+        {
+            "id": "16",
+            "descripcion": "A projector displays images or videos onto a large screen, often used during meetings or presentations.",
+            "respuesta": "Projector"
+        },
+        {
+            "id": "17",
+            "descripcion": "A conference table is a large table designed for meetings where multiple people can gather.",
+            "respuesta": "Conference Table"
+        },
+        {
+            "id": "18",
+            "descripcion": "A trash bin is used to collect waste materials and keep the office clean.",
+            "respuesta": "Trash Bin"
+        },
+        {
+            "id": "19",
+            "descripcion": "A coffee machine is a common appliance in offices for preparing coffee, helping employees stay energized.",
+            "respuesta": "Coffee Machine"
+        },
+        {
+            "id": "20",
+            "descripcion": "A clock is used to keep track of time in an office, ensuring schedules are followed.",
+            "respuesta": "Clock"
+        }
+    ],
+    "medio": [],
+    "dificil": []
+}

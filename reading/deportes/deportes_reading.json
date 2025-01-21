@@ -1,0 +1,102 @@
+[
+    {
+        "id": "1",
+        "descripcion": "A soccer ball is a spherical ball used to play soccer, made of leather or synthetic materials.",
+        "respuesta": "Soccer Ball"
+    },
+    {
+        "id": "2",
+        "descripcion": "Basketball is a team sport played on a court where players try to score by shooting a ball through a hoop.",
+        "respuesta": "Basketball"
+    },
+    {
+        "id": "3",
+        "descripcion": "A tennis racket is a piece of equipment used in tennis to hit the ball over the net.",
+        "respuesta": "Tennis Racket"
+    },
+    {
+        "id": "4",
+        "descripcion": "Swimming is a sport where individuals or teams race in water, using various strokes to move.",
+        "respuesta": "Swimming"
+    },
+    {
+        "id": "5",
+        "descripcion": "A baseball glove is a padded leather glove worn by players to catch balls during a baseball game.",
+        "respuesta": "Baseball Glove"
+    },
+    {
+        "id": "6",
+        "descripcion": "Running shoes are specialized footwear designed for comfort and performance in running activities.",
+        "respuesta": "Running Shoes"
+    },
+    {
+        "id": "7",
+        "descripcion": "A volleyball is a lightweight ball used in the sport of volleyball, typically made of synthetic or leather materials.",
+        "respuesta": "Volleyball"
+    },
+    {
+        "id": "8",
+        "descripcion": "A hockey stick is a long, curved stick used to hit the puck in ice or field hockey.",
+        "respuesta": "Hockey Stick"
+    },
+    {
+        "id": "9",
+        "descripcion": "Boxing gloves are padded gloves worn by boxers to protect their hands and reduce impact during punches.",
+        "respuesta": "Boxing Gloves"
+    },
+    {
+        "id": "10",
+        "descripcion": "Cycling is a sport or activity of riding bicycles, often requiring equipment like helmets and cycling shoes.",
+        "respuesta": "Cycling"
+    },
+    {
+        "id": "11",
+        "descripcion": "A cricket bat is a flat, wooden bat used to hit the ball in cricket.",
+        "respuesta": "Cricket Bat"
+    },
+    {
+        "id": "12",
+        "descripcion": "Badminton is a racket sport played on a court where players hit a shuttlecock over a net.",
+        "respuesta": "Badminton"
+    },
+    {
+        "id": "13",
+        "descripcion": "A table tennis paddle is a small, handheld racket used to hit the ball in table tennis.",
+        "respuesta": "Table Tennis Paddle"
+    },
+    {
+        "id": "14",
+        "descripcion": "Archery is a sport that involves shooting arrows at a target using a bow.",
+        "respuesta": "Archery"
+    },
+    {
+        "id": "15",
+        "descripcion": "A golf club is a stick used to hit the ball in the sport of golf, varying in type for different shots.",
+        "respuesta": "Golf Club"
+    },
+    {
+        "id": "16",
+        "descripcion": "Skating involves using skates to glide on surfaces, requiring equipment like roller or ice skates.",
+        "respuesta": "Skating"
+    },
+    {
+        "id": "17",
+        "descripcion": "A helmet is protective gear worn during sports like cycling, hockey, or skateboarding to protect the head.",
+        "respuesta": "Helmet"
+    },
+    {
+        "id": "18",
+        "descripcion": "Surfing is a water sport where individuals ride waves on a surfboard.",
+        "respuesta": "Surfing"
+    },
+    {
+        "id": "19",
+        "descripcion": "A yoga mat is a cushioned mat used during yoga practices to provide grip and comfort.",
+        "respuesta": "Yoga Mat"
+    },
+    {
+        "id": "20",
+        "descripcion": "A rugby ball is an oval-shaped ball used in rugby, made of synthetic or leather materials.",
+        "respuesta": "Rugby Ball"
+    }
+]
