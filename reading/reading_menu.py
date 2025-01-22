@@ -151,6 +151,8 @@ btnColorIncorrectoHover = "#A52C2C"
 btnColorCorrecto = "#48D46D"
 btnColorCorrectoHover = "#3AAE59"
 
+
+# CARGAR DATOS DEL JSON AQUI
 def JuegoReading(contenedor):
     cerrarJuego(contenedor)
 
@@ -161,81 +163,142 @@ def JuegoReading(contenedor):
     frameJuego.pack_propagate(False)
     frameJuego.pack(fill="both", expand=True, pady=(12,0), padx=30)
 
-    lbTextoJuegoReading = ctk.CTkLabel(
+    frameGrid = ctk.CTkFrame(
         frameJuego,
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce laoreet  nisi varius nisl porttitor, et scelerisque libero rutrum.Cras erat  lorem, eleifend rutrum nulla vitae, hendrerit mattis leo.\nFusce at  condimentum lectus. Curabitur vel iaculis ligula, quis lacinia sem.  Fusce in rutrum est, quis imperdiet leo.\nCurabitur feugiat consequat  nunc non porttitor.\nCras erat tellus, viverra eu molestie id, laoreet at ipsum. Aliquam erat volutpat.\nLorem ipsum dolor sit amet, consectetur  adipiscing elit.\nVivamus porta lacus mauris, at molestie elit egestas  sollicitudin.\nCurabitur porta maximus blandit. Fusce pretium lacus sit  amet lorem ultrices rutrum. Curabitur porta lorem ut magna lacinia, vel  rhoncus diam molestie.",
+        fg_color="#f73"
+    )
+    frameGrid.grid_columnconfigure(0, weight=1)
+    frameGrid.grid_columnconfigure(1, weight=1)
+    frameGrid.grid_rowconfigure(0, weight=1)
+    frameGrid.grid_rowconfigure(1, weight=1)
+    frameGrid.pack(fill="both", expand=True)
+
+    # 
+    frameCard1 = ctk.CTkFrame(
+        frameGrid,
+        fg_color="#EBEBEB" 
+    )
+    frameCard1.pack_propagate(False)
+    
+    frameCard1.grid(row=0, column=1, sticky="nsew")
+
+    lbCard1 = ctk.CTkLabel(
+        frameCard1, 
+        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
         text_color="#000",
         font=("Arial", 18),
         anchor="w",
         justify="left",
         fg_color="transparent"
     )
-    lbTextoJuegoReading.pack(fill="x", anchor="w")
+    lbCard1.pack(fill="x", anchor="n")
+
+    lbCard2 = ctk.CTkLabel(
+        frameCard1, 
+        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text_color="#000",
+        font=("Arial", 18),
+        anchor="w",
+        justify="left",
+        fg_color="transparent"
+    )
+    lbCard2.pack(fill="x", anchor="s")
+
+    # 
+    frameCard2 = ctk.CTkFrame(
+        frameGrid,
+        fg_color="#D9D9D9" 
+    )
+    frameCard2.grid(row=0, column=0, sticky="nsew")
+
+    frameCard3 = ctk.CTkFrame(
+        frameGrid,
+        fg_color="#CC3838" 
+    )
+    frameCard3.grid(row=1, column=0, sticky="nsew")
+
+    frameCard4 = ctk.CTkFrame(
+        frameGrid,
+        fg_color="#48D46D" 
+    )
+    frameCard4.grid(row=1, column=1, sticky="nsew")
+
+    # lbTextoJuegoReading = ctk.CTkLabel(
+    #     frameGrid,
+    #     text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+    #     text_color="#000",
+    #     font=("Arial", 18),
+    #     anchor="w",
+    #     justify="left",
+    #     fg_color="transparent"
+    # )
+    # # lbTextoJuegoReading.pack(fill="x", anchor="w")
+    # lbTextoJuegoReading.grid(row = 0, column = 0)
 
     # ----------------------------------
 
-    lbPregunta = ctk.CTkLabel(
-        frameJuego,
-        text="¿Pregunta a responder?",
-        text_color="#000",
-        font=("Arial", 26),
-        anchor="w",
-        fg_color="transparent"         
-    )
-    lbPregunta.pack(anchor="w", pady=24)
+    # lbPregunta = ctk.CTkLabel(
+    #     frameJuego,
+    #     text="¿Pregunta a responder?",
+    #     text_color="#000",
+    #     font=("Arial", 26),
+    #     anchor="w",
+    #     fg_color="transparent"         
+    # )
+    # lbPregunta.pack(anchor="w", pady=24)
 
-    btnRespuesta1 = ctk.CTkButton(
-        frameJuego,
-        text="A) Respuesta 1",
-        text_color="#000",
-        font=("Arial", 18),
-        fg_color=btnColorDefault,
-        hover_color=btnColorDefaultHover,
-        anchor="w",
-        width=300,
-        height=50
-    )
-    btnRespuesta1.pack(anchor="w", pady=(0, 15))
+    # btnRespuesta1 = ctk.CTkButton(
+    #     frameJuego,
+    #     text="A) Respuesta 1",
+    #     text_color="#000",
+    #     font=("Arial", 18),
+    #     fg_color=btnColorDefault,
+    #     hover_color=btnColorDefaultHover,
+    #     anchor="w",
+    #     width=300,
+    #     height=50
+    # )
+    # btnRespuesta1.pack(anchor="w", pady=(0, 15))
 
-    btnRespuesta2 = ctk.CTkButton(
-        frameJuego,
-        text="B) Respuesta 2",
-        text_color="#000",
-        font=("Arial", 18),
-        fg_color=btnColorCorrecto,
-        hover_color=btnColorCorrectoHover,
-        state="normal",
-        anchor="w",
-        width=300,
-        height=50
-    )
-    btnRespuesta2.pack(anchor="w", pady=(0, 15))
+    # btnRespuesta2 = ctk.CTkButton(
+    #     frameJuego,
+    #     text="B) Respuesta 2",
+    #     text_color="#000",
+    #     font=("Arial", 18),
+    #     fg_color=btnColorCorrecto,
+    #     hover_color=btnColorCorrectoHover,
+    #     state="normal",
+    #     anchor="w",
+    #     width=300,
+    #     height=50
+    # )
+    # btnRespuesta2.pack(anchor="w", pady=(0, 15))
 
-    btnRespuesta3 = ctk.CTkButton(
-        frameJuego,
-        text="C) Respuesta 3",
-        text_color="#000",
-        font=("Arial", 18),
-        fg_color=btnColorIncorrecto,
-        hover_color=btnColorIncorrectoHover,
-        anchor="w",
-        width=300,
-        height=50
-    )
-    btnRespuesta3.pack(anchor="w", pady=(0, 15))
+    # btnRespuesta3 = ctk.CTkButton(
+    #     frameJuego,
+    #     text="C) Respuesta 3",
+    #     text_color="#000",
+    #     font=("Arial", 18),
+    #     fg_color=btnColorIncorrecto,
+    #     hover_color=btnColorIncorrectoHover,
+    #     anchor="w",
+    #     width=300,
+    #     height=50
+    # )
+    # btnRespuesta3.pack(anchor="w", pady=(0, 15))
 
-    btnRespuesta4 = ctk.CTkButton(
-        frameJuego,
-        text="D) Respuesta 4",
-        text_color="#000",
-        font=("Arial", 18),
-        fg_color=btnColorDefault,
-        state="disabled",
-        anchor="w",
-        width=300,
-        height=50
-    )
-    btnRespuesta4.pack(anchor="w", pady=(0, 15))
+    # btnRespuesta4 = ctk.CTkButton(
+    #     frameJuego,
+    #     text="D) Respuesta 4",
+    #     text_color="#000",
+    #     font=("Arial", 18),
+    #     fg_color=btnColorDefault,
+    #     state="disabled",
+    #     anchor="w",
+    #     width=300,
+    #     height=50
+    # )
+    # btnRespuesta4.pack(anchor="w", pady=(0, 15))
 
 
 
