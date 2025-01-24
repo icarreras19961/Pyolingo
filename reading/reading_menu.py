@@ -187,16 +187,21 @@ def JuegoReading(contenedor):
     frameCard1.grid(row=0, column=0, sticky="nsew", padx=50, pady=50)
 
     # Aqui va el texto del json
+    label1_text = tk.StringVar()
+    label1_text.set("Texto inicial")
     lbCard1 = ctk.CTkLabel(
-        frameCard1, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        frameCard1,
+        textvariable=label1_text,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
         fg_color="transparent",
         wraplength=320
     )
+    lbCard1._name = 2
     lbCard1.grid(row=0, column=0, sticky="nsew")
+    print(lbCard1._name)
+
 
     card1GridRespuesta = ctk.CTkFrame(
         frameCard1,
