@@ -1,5 +1,8 @@
 import tkinter as tk
 import customtkinter as ctk
+from random import *
+import json
+
 
 btnVolerVentanas = []
 
@@ -152,10 +155,21 @@ def MenuCategorias(contenedor):
     btnCategoriaPrueba4.grid(row=1, column=2)
 
 
+# Cubos de texto
 
+juego1 = None
+juego2 = None
+juego3 = None
+juego4 = None
 
 # CARGAR DATOS DEL JSON AQUI
 def JuegoReading(contenedor):
+    global juego1
+    global juego2
+    global juego3
+    global juego4
+    
+    rellenador()
     cerrarJuego(contenedor)
 
     frameJuego = ctk.CTkFrame(
@@ -189,7 +203,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard1 = ctk.CTkLabel(
         frameCard1, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego1.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -226,7 +240,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(1,entryCard1.get(),frameCard1)
+        
 
     )
     btnCard1.grid(row=0, column=1, padx=(0,20))
@@ -249,7 +265,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard2 = ctk.CTkLabel(
         frameCard2, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego2.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -286,7 +302,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(2,entryCard2.get(),frameCard2)
+        
 
     )
     btnCard2.grid(row=0, column=1, padx=(0,20))
@@ -308,7 +326,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard3 = ctk.CTkLabel(
         frameCard3, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego3.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -345,7 +363,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(3,entryCard3.get(),frameCard3)
+        
 
     )
     btnCard3.grid(row=0, column=1, padx=(0,20))
@@ -369,7 +389,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard4 = ctk.CTkLabel(
         frameCard4, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego4.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -406,14 +426,85 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(4,entryCard4.get(),frameCard4)
 
     )
     btnCard4.grid(row=0, column=1, padx=(0,20))
 
     
+#Necesitamos rellenar los cuandraditos primero
+def rellenador():
+    # La array que decide que aparece
+    nrand=[randomizador(),randomizador(),randomizador(),randomizador()]
+    # Las globales
+    global juego1
+    global juego2
+    global juego3
+    global juego4
+    
+    # El fichero de donde sale la info
+    with open("./reading/Informatica/informatica_reading.json","r") as file:
+        data = json.load(file)
+        
+    # La asignacion de los objetos
+    juego1 = Juego(data["facil"][nrand[0]]["descripcion"], data["facil"][nrand[0]]["respuesta"])
+    juego2 = Juego(data["facil"][nrand[1]]["descripcion"], data["facil"][nrand[1]]["respuesta"])
+    juego3 = Juego(data["facil"][nrand[2]]["descripcion"], data["facil"][nrand[2]]["respuesta"])
+    juego4 = Juego(data["facil"][nrand[3]]["descripcion"], data["facil"][nrand[3]]["respuesta"])
+
+def randomizador():
+    return randrange(1,20)
+
+# Empieza el metodo juego
+def AnalizarRespuesta(*respuesta):
+    global btnColorDefault
+    if(respuesta[0] == 4):
+        resultado = juego4.respuesta.lower() == respuesta[1].lower()
+        print(juego4.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 3):
+        resultado = juego3.respuesta.lower() == respuesta[1].lower()
+        print(juego3.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 2):
+        resultado = juego2.respuesta.lower() == respuesta[1].lower()
+        print(juego2.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 1):
+        resultado = juego1.respuesta.lower() == respuesta[1].lower()
+        print(juego1.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
 
 
 def cerrarJuego(juego):
     for child in juego.winfo_children():
         child.destroy()
+
+# Clase para las preguntas respuestas
+class Juego:
+    def __init__(self, descripcion, respuesta):
+        self.descripcion = descripcion
+        self.respuesta = respuesta
+    
+    def getDesc(self):
+        return self.descripcion
+    
+    # comparador de respuesta
+    def comprobar_resp(self, resp_user):
+        if(self.respuesta == resp_user):
+            return True
+        else:
+            return False
