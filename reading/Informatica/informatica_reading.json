@@ -1,5 +1,4 @@
-{
-    "facil": [
+[
         {
             "id": "1",
             "descripcion": "A desk is a piece of furniture used for working. It typically has a flat surface for writing, placing a computer, and storing office supplies.",
@@ -100,7 +99,4 @@
             "descripcion": "A clock is used to keep track of time in an office, ensuring schedules are followed.",
             "respuesta": "Clock"
         }
-    ],
-    "medio": [],
-    "dificil": []
-}
+    ]

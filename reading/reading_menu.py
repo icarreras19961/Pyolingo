@@ -448,22 +448,32 @@ def rellenador():
         data = json.load(file)
         
     # La asignacion de los objetos
-    juego1 = Juego(data["facil"][nrand[0]]["descripcion"], data["facil"][nrand[0]]["respuesta"])
-    juego2 = Juego(data["facil"][nrand[1]]["descripcion"], data["facil"][nrand[1]]["respuesta"])
-    juego3 = Juego(data["facil"][nrand[2]]["descripcion"], data["facil"][nrand[2]]["respuesta"])
-    juego4 = Juego(data["facil"][nrand[3]]["descripcion"], data["facil"][nrand[3]]["respuesta"])
+    juego1 = Juego(data[nrand[0]]["descripcion"], data[nrand[0]]["respuesta"])
+    juego2 = Juego(data[nrand[1]]["descripcion"], data[nrand[1]]["respuesta"])
+    juego3 = Juego(data[nrand[2]]["descripcion"], data[nrand[2]]["respuesta"])
+    juego4 = Juego(data[nrand[3]]["descripcion"], data[nrand[3]]["respuesta"])
 
 def randomizador():
     return randrange(1,20)
 
+correcto1 = False
+correcto2 = False
+correcto3 = False
+correcto4 = False
 # Empieza el metodo juego
 def AnalizarRespuesta(*respuesta):
     global btnColorDefault
+    global correcto1
+    global correcto2
+    global correcto3
+    global correcto4
+    # Falta que detecte cuando ha acabado el juego
     if(respuesta[0] == 4):
         resultado = juego4.respuesta.lower() == respuesta[1].lower()
         print(juego4.respuesta)
         if(resultado):
             respuesta[2].configure(fg_color="#48D46D")
+            correcto4 = True         
         else:
             respuesta[2].configure(fg_color="#CC3838")
     elif (respuesta[0] == 3):
@@ -471,6 +481,7 @@ def AnalizarRespuesta(*respuesta):
         print(juego3.respuesta)
         if(resultado):
             respuesta[2].configure(fg_color="#48D46D")
+            correcto3 = True 
         else:
             respuesta[2].configure(fg_color="#CC3838")
     elif (respuesta[0] == 2):
@@ -478,6 +489,7 @@ def AnalizarRespuesta(*respuesta):
         print(juego2.respuesta)
         if(resultado):
             respuesta[2].configure(fg_color="#48D46D")
+            correcto2 = True
         else:
             respuesta[2].configure(fg_color="#CC3838")
     elif (respuesta[0] == 1):
@@ -485,8 +497,17 @@ def AnalizarRespuesta(*respuesta):
         print(juego1.respuesta)
         if(resultado):
             respuesta[2].configure(fg_color="#48D46D")
+            correcto1 = True
         else:
             respuesta[2].configure(fg_color="#CC3838")
+    
+    # lo que va dentro del if de abajo = correcto1 and correcto2 and correcto3 and correcto4
+    if (True):
+        print("Has ganado")
+        # Aqui tendremos
+        with open("./userLoged.json","r") as file:
+            data = json.load(file)
+        print(data["reading"]["informatica"])
 
 
 def cerrarJuego(juego):
