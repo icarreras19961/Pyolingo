@@ -6,15 +6,17 @@ import json
 
 btnVolerVentanas = []
 
+# Variables de color
 btnColorDefault = "#EBEBEB"
 # btnColorDefaultHover = "#D9D9D9"
-
 btnColorIncorrecto = "#CC3838"
 btnColorIncorrectoHover = "#A52C2C"
-
 btnColorCorrecto = "#48D46D"
 btnColorCorrectoHover = "#3AAE59"
 
+# La variable que se utiliza una vez ya ha jugado
+colorTech = "#D9D9D9"
+colorTechHover = "#EBEBEB"
 
 def reading_menu(contenedor):
     frameReading = ctk.CTkFrame(
@@ -51,8 +53,20 @@ def reading_menu(contenedor):
     frameContenidoReading.pack(fill="both", expand=True)
     lbTitulo.pack()
 
+    comprobador()
     MenuCategorias(frameContenidoReading)
 
+# Esta funcion comprueba si el jugador ya se ha pasado ese nivel o no
+# gris = no lo ha jugado // verde = lo ha completado con exito
+def comprobador():
+    global colorTech, colorTechHover
+    
+    with open("./userLoged.json","r") as file:
+        data = json.load(file)
+        json_data = json.loads(data)
+    if(json_data["lvl"]["lvl"][1]["reading"][0]["informatica"] == True):
+        colorTech = btnColorCorrecto
+        colorTechHover = btnColorCorrectoHover
 
 def MenuCategorias(contenedor):
     frameMenuCategorias = ctk.CTkFrame(
@@ -74,8 +88,8 @@ def MenuCategorias(contenedor):
         font=("Arial", 30),
         text_color="#000",
         image=imgCategoriaTech,
-        fg_color="#D9D9D9",
-        hover_color="#EBEBEB",
+        fg_color=colorTech,
+        hover_color=colorTechHover,
         width=270,
         height=270,
         compound="top",
@@ -463,10 +477,12 @@ correcto4 = False
 # Empieza el metodo juego
 def AnalizarRespuesta(*respuesta):
     global btnColorDefault
+    global colorTech
     global correcto1
     global correcto2
     global correcto3
     global correcto4
+    
     # Falta que detecte cuando ha acabado el juego
     if(respuesta[0] == 4):
         resultado = juego4.respuesta.lower() == respuesta[1].lower()
@@ -501,14 +517,26 @@ def AnalizarRespuesta(*respuesta):
         else:
             respuesta[2].configure(fg_color="#CC3838")
     
-    # lo que va dentro del if de abajo = correcto1 and correcto2 and correcto3 and correcto4
-    if (True):
+    # Esto es el si ganas lo que hace el proyecto y ademas actualiza el usuario para los juegos
+    if (correcto1 and correcto2 and correcto3 and correcto4):
         print("Has ganado")
-        # Aqui tendremos
+        colorTech = btnColorCorrecto
+        # Aqui leemos el fichero del usuario y lo guarda en una variable
         with open("./userLoged.json","r") as file:
             data = json.load(file)
-        print(data["reading"]["informatica"])
+            json_data = json.loads(data)
 
+    # Cambiamos el valor del juego que estamos jugando
+        json_data["lvl"]["lvl"][1]["reading"][0]["informatica"] = True
+        print(json_data)
+        json_data_json = json.dumps(json_data)
+    
+    # Volvemos ha escribir el fichero con el valor actualizado
+        with open("./userLoged.json","w") as file:
+                try:
+                    json.dump(json_data_json,file,indent=4)
+                except:
+                    print("Error al insertar datos")
 
 def cerrarJuego(juego):
     for child in juego.winfo_children():
