@@ -93,7 +93,7 @@ def MenuCategorias(contenedor):
         width=270,
         height=270,
         compound="top",
-        command=lambda: JuegoReading(contenedor)
+        command=lambda: JuegoReading("tech", contenedor)
     )
     btnCategoriaTech.grid(row=0, column=0)
 
@@ -108,7 +108,8 @@ def MenuCategorias(contenedor):
         hover_color="#EBEBEB",
         width=270,
         height=270,
-        compound="top"
+        compound="top",
+        command=lambda: JuegoReading("sports", contenedor)
     )
     btnCategoriaSports.grid(row=0, column=1)
 
@@ -177,13 +178,13 @@ juego3 = None
 juego4 = None
 
 # CARGAR DATOS DEL JSON AQUI
-def JuegoReading(contenedor):
+def JuegoReading(categoria, contenedor):
     global juego1
     global juego2
     global juego3
     global juego4
     
-    rellenador()
+    rellenador(categoria)
     cerrarJuego(contenedor)
 
     frameJuego = ctk.CTkFrame(
@@ -260,7 +261,7 @@ def JuegoReading(contenedor):
         text_color="#000",
         fg_color="#FFCC00",
         hover_color="#ECBD00",
-        command=lambda: AnalizarRespuesta(1,entryCard1.get(),frameCard1)
+        command=lambda: AnalizarRespuesta(1,entryCard1.get(),frameCard1, contenedor)
         
 
     )
@@ -322,7 +323,7 @@ def JuegoReading(contenedor):
         text_color="#000",
         fg_color="#FFCC00",
         hover_color="#ECBD00",
-        command=lambda: AnalizarRespuesta(2,entryCard2.get(),frameCard2)
+        command=lambda: AnalizarRespuesta(2,entryCard2.get(),frameCard2, contenedor)
         
 
     )
@@ -383,7 +384,7 @@ def JuegoReading(contenedor):
         text_color="#000",
         fg_color="#FFCC00",
         hover_color="#ECBD00",
-        command=lambda: AnalizarRespuesta(3,entryCard3.get(),frameCard3)
+        command=lambda: AnalizarRespuesta(3,entryCard3.get(),frameCard3, contenedor)
         
 
     )
@@ -446,14 +447,49 @@ def JuegoReading(contenedor):
         text_color="#000",
         fg_color="#FFCC00",
         hover_color="#ECBD00",
-        command=lambda: AnalizarRespuesta(4,entryCard4.get(),frameCard4)
+        command=lambda: AnalizarRespuesta(4,entryCard4.get(),frameCard4, contenedor)
 
     )
     btnCard4.grid(row=0, column=1, padx=(0,20))
 
+
+def pantallaVictoria(contenedor):
+    frameVictoria = ctk.CTkFrame(
+        contenedor,
+        fg_color="transparent",
+
+    )
+    frameVictoria.pack_propagate(False)
+    frameVictoria.pack(fill="both", expand=True)
+
+    lbVictoria = ctk.CTkLabel(
+        frameVictoria,
+        text="Has Ganado",
+        text_color="#000",
+        font=("Arial", 40)
+    )
+    lbVictoria.pack(expand=True)
+
+    btnIrAMenuCategorias = ctk.CTkButton(
+        frameVictoria,
+        height=100,
+        width=200,
+        text="Menu",
+        font=("Arial", 40),
+        text_color="#000",
+        fg_color="#FFCC00",
+        hover_color="#ECBD00",
+        command=lambda: volverAMenu(contenedor)
+    )
+    btnIrAMenuCategorias.pack(expand=True)
+
+
+def volverAMenu(contenedor):
+    cerrarJuego(contenedor)
+    MenuCategorias(contenedor)
     
 #Necesitamos rellenar los cuandraditos primero
-def rellenador():
+def rellenador(categoria):
     # La array que decide que aparece
     nrand=[randomizador(),randomizador(),randomizador(),randomizador()]
     # Las globales
@@ -461,6 +497,8 @@ def rellenador():
     global juego2
     global juego3
     global juego4
+
+    # TODO if para que carge la categoria
     
     # El fichero de donde sale la info
     with open("./reading/Informatica/informatica_reading.json","r") as file:
@@ -487,6 +525,7 @@ def AnalizarRespuesta(*respuesta):
     global correcto2
     global correcto3
     global correcto4
+
     
     # Falta que detecte cuando ha acabado el juego
     if(respuesta[0] == 4):
@@ -524,7 +563,14 @@ def AnalizarRespuesta(*respuesta):
     
     # Esto es el si ganas lo que hace el proyecto y ademas actualiza el usuario para los juegos
     if (correcto1 and correcto2 and correcto3 and correcto4):
+        # Pantalla de ganar y btn volver a menu
+        cerrarJuego(respuesta[3])
+        pantallaVictoria(respuesta[3])
         print("Has ganado")
+        correcto1 = False
+        correcto2 = False
+        correcto3 = False
+        correcto4 = False
         colorTech = btnColorCorrecto
         # Aqui leemos el fichero del usuario y lo guarda en una variable
         with open("./userLoged.json","r") as file:
