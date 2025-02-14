@@ -1,17 +1,22 @@
 import tkinter as tk
 import customtkinter as ctk
+from random import *
+import json
+
 
 btnVolerVentanas = []
 
+# Variables de color
 btnColorDefault = "#EBEBEB"
 # btnColorDefaultHover = "#D9D9D9"
-
 btnColorIncorrecto = "#CC3838"
 btnColorIncorrectoHover = "#A52C2C"
-
 btnColorCorrecto = "#48D46D"
 btnColorCorrectoHover = "#3AAE59"
 
+# La variable que se utiliza una vez ya ha jugado
+colorTech = "#D9D9D9"
+colorTechHover = "#EBEBEB"
 
 def reading_menu(contenedor):
     frameReading = ctk.CTkFrame(
@@ -48,8 +53,20 @@ def reading_menu(contenedor):
     frameContenidoReading.pack(fill="both", expand=True)
     lbTitulo.pack()
 
+    comprobador()
     MenuCategorias(frameContenidoReading)
 
+# Esta funcion comprueba si el jugador ya se ha pasado ese nivel o no
+# gris = no lo ha jugado // verde = lo ha completado con exito
+def comprobador():
+    global colorTech, colorTechHover
+    
+    with open("./userLoged.json","r") as file:
+        data = json.load(file)
+        json_data = json.loads(data)
+    if(json_data["lvl"]["lvl"][1]["reading"][0]["informatica"] == True):
+        colorTech = btnColorCorrecto
+        colorTechHover = btnColorCorrectoHover
 
 def MenuCategorias(contenedor):
     frameMenuCategorias = ctk.CTkFrame(
@@ -71,8 +88,8 @@ def MenuCategorias(contenedor):
         font=("Arial", 30),
         text_color="#000",
         image=imgCategoriaTech,
-        fg_color="#D9D9D9",
-        hover_color="#EBEBEB",
+        fg_color=colorTech,
+        hover_color=colorTechHover,
         width=270,
         height=270,
         compound="top",
@@ -152,10 +169,21 @@ def MenuCategorias(contenedor):
     btnCategoriaPrueba4.grid(row=1, column=2)
 
 
+# Cubos de texto
 
+juego1 = None
+juego2 = None
+juego3 = None
+juego4 = None
 
 # CARGAR DATOS DEL JSON AQUI
 def JuegoReading(contenedor):
+    global juego1
+    global juego2
+    global juego3
+    global juego4
+    
+    rellenador()
     cerrarJuego(contenedor)
 
     frameJuego = ctk.CTkFrame(
@@ -190,8 +218,8 @@ def JuegoReading(contenedor):
     label1_text = tk.StringVar()
     label1_text.set("Texto inicial")
     lbCard1 = ctk.CTkLabel(
-        frameCard1,
-        textvariable=label1_text,
+        frameCard1, 
+        text=juego1.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -231,7 +259,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(1,entryCard1.get(),frameCard1)
+        
 
     )
     btnCard1.grid(row=0, column=1, padx=(0,20))
@@ -254,7 +284,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard2 = ctk.CTkLabel(
         frameCard2, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego2.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -291,7 +321,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(2,entryCard2.get(),frameCard2)
+        
 
     )
     btnCard2.grid(row=0, column=1, padx=(0,20))
@@ -313,7 +345,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard3 = ctk.CTkLabel(
         frameCard3, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego3.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -350,7 +382,9 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(3,entryCard3.get(),frameCard3)
+        
 
     )
     btnCard3.grid(row=0, column=1, padx=(0,20))
@@ -374,7 +408,7 @@ def JuegoReading(contenedor):
     # Aqui va el texto del json
     lbCard4 = ctk.CTkLabel(
         frameCard4, 
-        text="An office chair is designed for comfort and support during long working hours. It often includes adjustable height and wheels for mobility.",
+        text=juego4.descripcion,
         text_color="#000",
         font=("Arial", 18),
         justify="left",
@@ -411,14 +445,120 @@ def JuegoReading(contenedor):
         text="R",
         text_color="#000",
         fg_color="#FFCC00",
-        hover_color="#ECBD00"
+        hover_color="#ECBD00",
+        command=lambda: AnalizarRespuesta(4,entryCard4.get(),frameCard4)
 
     )
     btnCard4.grid(row=0, column=1, padx=(0,20))
 
     
+#Necesitamos rellenar los cuandraditos primero
+def rellenador():
+    # La array que decide que aparece
+    nrand=[randomizador(),randomizador(),randomizador(),randomizador()]
+    # Las globales
+    global juego1
+    global juego2
+    global juego3
+    global juego4
+    
+    # El fichero de donde sale la info
+    with open("./reading/Informatica/informatica_reading.json","r") as file:
+        data = json.load(file)
+        
+    # La asignacion de los objetos
+    juego1 = Juego(data[nrand[0]]["descripcion"], data[nrand[0]]["respuesta"])
+    juego2 = Juego(data[nrand[1]]["descripcion"], data[nrand[1]]["respuesta"])
+    juego3 = Juego(data[nrand[2]]["descripcion"], data[nrand[2]]["respuesta"])
+    juego4 = Juego(data[nrand[3]]["descripcion"], data[nrand[3]]["respuesta"])
 
+def randomizador():
+    return randrange(1,20)
+
+correcto1 = False
+correcto2 = False
+correcto3 = False
+correcto4 = False
+# Empieza el metodo juego
+def AnalizarRespuesta(*respuesta):
+    global btnColorDefault
+    global colorTech
+    global correcto1
+    global correcto2
+    global correcto3
+    global correcto4
+    
+    # Falta que detecte cuando ha acabado el juego
+    if(respuesta[0] == 4):
+        resultado = juego4.respuesta.lower() == respuesta[1].lower()
+        print(juego4.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+            correcto4 = True         
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 3):
+        resultado = juego3.respuesta.lower() == respuesta[1].lower()
+        print(juego3.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+            correcto3 = True 
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 2):
+        resultado = juego2.respuesta.lower() == respuesta[1].lower()
+        print(juego2.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+            correcto2 = True
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    elif (respuesta[0] == 1):
+        resultado = juego1.respuesta.lower() == respuesta[1].lower()
+        print(juego1.respuesta)
+        if(resultado):
+            respuesta[2].configure(fg_color="#48D46D")
+            correcto1 = True
+        else:
+            respuesta[2].configure(fg_color="#CC3838")
+    
+    # Esto es el si ganas lo que hace el proyecto y ademas actualiza el usuario para los juegos
+    if (correcto1 and correcto2 and correcto3 and correcto4):
+        print("Has ganado")
+        colorTech = btnColorCorrecto
+        # Aqui leemos el fichero del usuario y lo guarda en una variable
+        with open("./userLoged.json","r") as file:
+            data = json.load(file)
+            json_data = json.loads(data)
+
+    # Cambiamos el valor del juego que estamos jugando
+        json_data["lvl"]["lvl"][1]["reading"][0]["informatica"] = True
+        print(json_data)
+        json_data_json = json.dumps(json_data)
+    
+    # Volvemos ha escribir el fichero con el valor actualizado
+        with open("./userLoged.json","w") as file:
+                try:
+                    json.dump(json_data_json,file,indent=4)
+                except:
+                    print("Error al insertar datos")
 
 def cerrarJuego(juego):
     for child in juego.winfo_children():
         child.destroy()
+
+# Clase para las preguntas respuestas
+class Juego:
+    def __init__(self, descripcion, respuesta):
+        self.descripcion = descripcion
+        self.respuesta = respuesta
+    
+    def getDesc(self):
+        return self.descripcion
+    
+    # comparador de respuesta
+    def comprobar_resp(self, resp_user):
+        if(self.respuesta == resp_user):
+            return True
+        else:
+            return False
