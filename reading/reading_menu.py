@@ -215,6 +215,8 @@ def JuegoReading(contenedor):
     frameCard1.grid(row=0, column=0, sticky="nsew", padx=50, pady=50)
 
     # Aqui va el texto del json
+    label1_text = tk.StringVar()
+    label1_text.set("Texto inicial")
     lbCard1 = ctk.CTkLabel(
         frameCard1, 
         text=juego1.descripcion,
@@ -224,7 +226,10 @@ def JuegoReading(contenedor):
         fg_color="transparent",
         wraplength=320
     )
+    lbCard1._name = 2
     lbCard1.grid(row=0, column=0, sticky="nsew")
+    print(lbCard1._name)
+
 
     card1GridRespuesta = ctk.CTkFrame(
         frameCard1,
