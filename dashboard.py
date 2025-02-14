@@ -7,6 +7,10 @@ from writing.writing_menu import writing_menu
 import forms.Login
 import json
 
+import json
+import mariadb
+import sys
+
 # 13151A
 # FFCC00 Amarillo
 # 2F2F2F Gris
@@ -251,7 +255,36 @@ def MostrarJuegoWriting(contenedor):
     writing_menu(contenedor)
 
 def cerrarSesion(root):
-    root.destroy()
-    forms.Login.Login()
+    # Aqui antes de cerrarlo todo voy ha tener que hace una actualizacion de la base de datos de nuestro usuario para que se guarde el progreso
     print("Inicia Login y se borra los datos del usuario guardados en userLoged.json")
 
+    try:
+        conn = mariadb.connect(
+        user="root",
+        password="",
+        host="127.0.0.1",
+        port=3306,
+        database="pyolingo"
+        )
+    except mariadb.Error as e:
+        print("Error de conexion a MariaDB: {e}")
+        sys.exit(1)
+    cur = conn.cursor()
+    
+    try:
+        with open("./userLoged.json","r") as file:
+            data = json.load(file)
+        json_data = json.loads(data)
+        
+        nombreUser = json_data["name"]
+        newlvl = json_data["lvl"]
+        print(nombreUser)
+        query = f"UPDATE usuario SET lvlComplete = '{json.dumps(newlvl)}'  WHERE nombre = '{nombreUser}'"
+        
+        cur.execute(query)
+        conn.commit()
+    except Exception as e:
+        print(f"Fallo en la actualizacion del usuario: {e}")
+    
+    root.destroy()
+    forms.Login.Login()
